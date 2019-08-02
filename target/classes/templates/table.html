@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap 实例</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <script src="../static/jquery-3.4.1.min.js"></script>
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
+</head>
+<body>
+<script>
+    var url = window.location.href;
+    var i = url.indexOf("?");
+    var data = url.substring(i+4,url.length);
+    console.log('data='+data);
+    $.ajax({
+        url: "/report/geteachone?actid=" + data,//请求地址
+        contentType: "application/json;charset=UTF-8",
+        data: {},
+        type: "get",//提交的方式
+        dataType: 'json', //返回类型 TEXT字符串 JSON XML
+        success: function (data) {
+            var ecatt = data.data;
+            var datahtml = "";
+            datahtml = " <tr class=\"table-primary\">\n" +
+                "        <td>ACTID</td>\n" +
+                "        <td>" +ecatt.accid+
+                "</td>\n" +
+                "        </tr>\n" +
+                "        <tr class=\"table-success\">\n" +
+                "        <td>Text</td>\n" +ecatt.text+
+                "        <td>" +
+                "</td>\n" +
+                "        </tr>\n" +
+                "        <tr class=\"table-danger\">\n" +
+                "        <td>eCATT\n" +
+                "    calling\n" +
+                "    BC Set</td>\n" +
+                "    <td>" + ecatt.ecattcallingbcset+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-info\">\n" +
+                "        <td>Contains\n" +
+                "    Delivery\n" +
+                "    Class A</td>\n" +
+                "    <td>" + ecatt.containsdeliveryclassa+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-primary\">\n" +
+                "        <td>In Table\n" +
+                "    MDASCUSTD\n" +
+                "        [ Runs in P ]</td>\n" +
+                "    <td>" + ecatt.intablemdascustd+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-success\">\n" +
+                "        <td>Used\n" +
+                "    only in\n" +
+                "    demo\n" +
+                "    data?</td>\n" +
+                "    <td>" +ecatt.usedonlyindemodata+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-danger\">\n" +
+                "        <td>Used\n" +
+                "        in OP\n" +
+                "    only</td>\n" +
+                "    <td>" + ecatt.usedinoponly+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-info\">\n" +
+                "        <td>LOB responsible\n" +
+                "    for eCATT</td>\n" +
+                "        <td>" + ecatt.lobresponsibleforecatt+
+                "</td>\n" +
+                "        </tr>\n" +
+                "        <tr class=\"table-primary\">\n" +
+                "        <td>ABAP Replacement Class</td>\n" +
+                "    <td>" + ecatt.abapreplacementclass+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-success\">\n" +
+                "        <td>Application Component\n" +
+                "    of Replacement Class</td>\n" +
+                "    <td>" +ecatt.applicationcomponentofrepleacementclass+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-danger\">\n" +
+                "        <td>LOB responsible\n" +
+                "    for Replacement Class</td>\n" +
+                "    <td>" +ecatt.lobresponsibleforreplacementclass+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-info\">\n" +
+                "        <td>eCATT Classification\n" +
+                "    done by LOB</td>\n" +
+                "    <td>" +ecatt.ecattclassificationdonebylob+
+                "</td>" +
+                "    </tr>\n" +
+                "    <tr class=\"table-primary\">\n" +
+                "        <td>Responsible LoB</td>\n" +
+                "    <td>" +ecatt.responsiblelob+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-success\">\n" +
+                "        <td>LoB Comments</td>\n" +
+                "    <td>" +ecatt.lobcomments+
+                "</td>\n" +
+                "    </tr>\n" +
+                "    <tr class=\"table-danger\">\n" +
+                "        <td>LoB Commitment Status\n" +
+                "    X/4 S/4 Public Cloud 1911 </td>\n" +
+                "    <td>" +ecatt.loccommitmentstatuspubliccloud1911+
+                "</td>\n" +
+                "    </tr>";
+            $('#info').append(datahtml);
+        }
+    });
+
+</script>
+<div class="container">
+    <h2 id="title">information</h2>
+    <table class="table" id="content">
+        <thead>
+        <tr>
+            <th>Column</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody id="info">
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

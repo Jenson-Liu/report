@@ -1,0 +1,95 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+</head>
+<script src="../static/jquery-3.4.1.min.js"></script>
+<script src="../static/bootstrap.min.js"></script>
+<body>
+<div class="container">
+    <h2>SHOW TABLE</h2>
+    <select class="combobox" onchange="selectoption(this)">
+        <option></option>
+        <option value="ECATT_MIGRATION_TO_RC">ECATT_MIGRATION_TO_RC</option>
+        <option value="ECATT_NO_MIGRATION">ECATT_NO_MIGRATION</option>
+        <option value="ECATT_FORCE_IMG">ECATT_FORCE_IMG</option>
+        <option value="ECATT_MULT_TYPE">ECATT_MULT_TYPE</option>
+    </select>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>ACTID</th>
+            <th>eCATT Classification done by LOB</th>
+            <th>LoB Commitment Status X/4 S/4 Public Cloud 1911 </th>
+        </tr>
+        </thead>
+        <tbody id="list">
+        </tbody>
+    </table>
+</div>
+<script>
+    function doajaxlist() {
+        $.ajax({
+            url: "/report/getAlllist",//请求地址
+            contentType: "application/json;charset=UTF-8",
+            data: {},
+            type: "get",//提交的方式
+            dataType: 'json', //返回类型 TEXT字符串 JSON XML
+            success: function (data) {   // 这里的data就是json格式的数据
+                for (var i=0; i<data.data.length; i++){
+                    var datahtml = " <tr onclick='on(this)' id='" +data.data[i].accid+
+                        "'>\n" +
+                        "            <td>" +(i+1) +
+                        "</td>\n" +
+                        "            <td>" +data.data[i].accid +
+                        "</td>\n" +
+                        "            <td>" +data.data[i].ecattclassificationdonebylob +
+                        "</td>\n" +
+                        "            <td>" +data.data[i].loccommitmentstatuspubliccloud1911 +
+                        "</td>\n" +
+                        "        </tr>";
+                    $('#list').append(datahtml);
+                }
+
+            }
+        });
+    }
+    function on(data) {
+        window.location.href = "tableshow?id="+data.id;
+    }
+    function selectoption(data) {
+        console.log(data.value);
+        $.ajax({
+            url: "/report/getPercentbyClasseach/"+data.value,//请求地址
+            contentType: "application/json;charset=UTF-8",
+            data: {},
+            type: "get",//提交的方式
+            dataType: 'json', //返回类型 TEXT字符串 JSON XML
+            success: function (data) {
+                var datahtml = "";
+                for (var i=0; i<data.data.length; i++){
+                      datahtml += " <tr onclick='on(this)' id='" +data.data[i].accid+
+                        "'>\n" +
+                        "            <td>" +(i+1) +
+                        "</td>\n" +
+                        "            <td>" +data.data[i].accid +
+                        "</td>\n" +
+                        "            <td>" +data.data[i].ecattclassificationdonebylob +
+                        "</td>\n" +
+                        "            <td>" +data.data[i].loccommitmentstatuspubliccloud1911 +
+                        "</td>\n" +
+                        "        </tr>";
+
+                }
+                document.getElementById("list").innerHTML = datahtml;
+            }
+        })
+    }
+
+    doajaxlist();
+
+</script>
+</body>
+
+</html>
