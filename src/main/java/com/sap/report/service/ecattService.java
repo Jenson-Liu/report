@@ -1,6 +1,7 @@
 package com.sap.report.service;
 
 import com.sap.report.pojo.unique_eCATT;
+import com.sap.report.tool.ListTool;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -69,5 +70,25 @@ public class ecattService {
         hashMap.put("Can currently be ignored",listignored);
         hashMap.put("In clarification",listclarification);
         return hashMap;
+    }
+
+    public ArrayList<unique_eCATT> getbyBoth(ArrayList<unique_eCATT> list,String selectClass,String selectLob){
+        ArrayList<unique_eCATT> listClass = new ArrayList<>();
+        ArrayList<unique_eCATT> listLob = new ArrayList<>();
+        if(selectClass != null){
+            for(unique_eCATT unique_eCATT:list){
+                if(unique_eCATT.getEcattclassificationdonebylob().contains(selectClass)){
+                    listClass.add(unique_eCATT);
+                }
+            }
+        }
+        if(selectClass != null){
+            for(unique_eCATT unique_eCATT:list){
+                if(unique_eCATT.getLoccommitmentstatuspubliccloud1911().contains(selectLob)){
+                    listLob.add(unique_eCATT);
+                }
+            }
+        }
+        return ListTool.getBoth(listClass,listLob);
     }
 }

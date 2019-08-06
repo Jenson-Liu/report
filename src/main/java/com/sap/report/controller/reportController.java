@@ -33,7 +33,7 @@ public class reportController {
     @ResponseBody
     @RequestMapping(value = "/getPercentbyClass",method = RequestMethod.GET)
     public AjaxVO showPercentbyClass(){
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         String ecattmigrationtorc;
         String ecattnomigration;
         String ecattforceimg;
@@ -66,7 +66,7 @@ public class reportController {
     @ResponseBody
     @RequestMapping(value = "/getPercentbyLob",method = RequestMethod.GET)
     public AjaxVO showPercentbyLob(){
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         String ce1908;
         String ce1911;
         String obsoltete;
@@ -109,7 +109,7 @@ public class reportController {
     @ResponseBody
     @RequestMapping(value = "/getPercentbyClasseach/{type}",method = RequestMethod.GET)
     public AjaxVO showPercentbyClasseach(@PathVariable("type") String type){
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         ArrayList<unique_eCATT> listunique = new ArrayList<>();
         HashMap<String, ArrayList<unique_eCATT>> hashMap = ecattService.getbyClassification(list);
         listunique = hashMap.get(type);
@@ -120,7 +120,7 @@ public class reportController {
     @ResponseBody
     @RequestMapping(value = "/getPercentbyClasseach",method = RequestMethod.GET)
     public AjaxVO showPercentbyClassAll(){
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         AjaxVO ajaxVO = new AjaxVO(true, "success", list);
         return ajaxVO;
     }
@@ -128,7 +128,7 @@ public class reportController {
     @ResponseBody
     @RequestMapping(value = "/getPercentbyLobeach/{type}",method = RequestMethod.GET)
     public AjaxVO showPercentbyLobeach(@PathVariable("type") String type){
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         ArrayList<unique_eCATT> listpercent = new ArrayList<>();
         HashMap<String, ArrayList<unique_eCATT>> hashMap = ecattService.getbylobcommitmentstatus(list);
         listpercent = hashMap.get(type);
@@ -139,7 +139,7 @@ public class reportController {
     @ResponseBody
     @RequestMapping(value = "/getPercentbyLobeach",method = RequestMethod.GET)
     public AjaxVO showPercentbyLobAll(){
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         AjaxVO ajaxVO = new AjaxVO(true, "success", list);
         return ajaxVO;
     }
@@ -147,16 +147,26 @@ public class reportController {
     @ResponseBody
     @RequestMapping(value = "/getAlllist",method = RequestMethod.GET)
     public AjaxVO showAlllist(){
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         AjaxVO ajaxVO = new AjaxVO(true, "success", list);
+        return ajaxVO;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getBoth",method = RequestMethod.GET)
+    public AjaxVO showBoth(@RequestParam("selectClass") String selectClass,
+                           @RequestParam("selectLob") String selectLob ){
+        System.out.println(selectClass+":"+selectLob);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> listunique = ecattService.getbyBoth(list,selectClass,selectLob);
+        AjaxVO ajaxVO = new AjaxVO(true, "success", listunique);
         return ajaxVO;
     }
 
     @ResponseBody
     @RequestMapping(value = "/geteachone",method = RequestMethod.GET)
     public AjaxVO showAlllistByaccid(@RequestParam("actid") String actid){
-        System.out.println("actid:"+actid);
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         unique_eCATT unique_eCATTCopy = new unique_eCATT();
         for(unique_eCATT unique_eCATT: list){
             if(unique_eCATT.getAccid().equals(actid)){
@@ -169,7 +179,7 @@ public class reportController {
         return ajaxVO;
     }
 
-    @RequestMapping(value = "/welcome",method = RequestMethod.GET)
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String Welcome(){
         return "report";
     }
@@ -192,7 +202,7 @@ public class reportController {
     @ResponseBody
     @RequestMapping(value = "/getListone/{name}",method = RequestMethod.GET)
     public AjaxVO getListone(@PathVariable("name") String name){
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("ExcelFiles/1_Unique_eCATT.xlsx", "eCATT",15);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT",15);
         unique_eCATT unique_eCATTIndex = new unique_eCATT();
         for(unique_eCATT unique_eCATT:list){
             if (unique_eCATT.getAccid() == name){

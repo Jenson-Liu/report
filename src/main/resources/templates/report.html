@@ -250,12 +250,12 @@
         margin-top: 10vh;
     }
     #container_left{
-        width: 45%;
+        width: 49%;
         height: 55vh;
         border: 1px solid black;
     }
     #container_right{
-        width: 45%;
+        width: 49%;
         height: 55vh;
         border: 1px solid black;
 
@@ -263,21 +263,11 @@
 </style>
 <body style="width: 100%; margin: 0">
 <button id="fat-btn1" class="btn btn-primary" data-loading-text="Loading..."
-        type="button"> X/4 S/4 Public Cloud 1911
-</button>
-<button id="fat-btn2" class="btn btn-primary" data-loading-text="Loading..."
-        type="button"> Classification
+        type="button"> Show Table
 </button>
 <script>
     $(function() {
         $("#fat-btn1").click(function(){
-            $(this).button('loading').delay(1000).queue(function() {
-                window.location.href = "/report/Lob";
-            });
-        });
-    });
-    $(function() {
-        $("#fat-btn2").click(function(){
             $(this).button('loading').delay(1000).queue(function() {
                 window.location.href = "/report/Class";
             });

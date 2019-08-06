@@ -15,6 +15,7 @@
     var i = url.indexOf("?");
     var data = url.substring(i+4,url.length);
     console.log('data='+data);
+
     $.ajax({
         url: "/report/geteachone?actid=" + data,//请求地址
         contentType: "application/json;charset=UTF-8",
@@ -122,6 +123,12 @@
 </script>
 <div class="container">
     <h2 id="title">information</h2>
+    <button type="button" class="btn btn-primary span3 offset2" onclick="backtoIndex()">Back to Index</button>
+    <script>
+        function backtoIndex() {
+            window.location.href = "/report/index";
+        }
+    </script>
     <table class="table" id="content">
         <thead>
         <tr>

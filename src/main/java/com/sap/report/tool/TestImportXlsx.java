@@ -20,7 +20,7 @@ public final class TestImportXlsx {
 
     public static void main(String[] args) throws Exception  {
 
-        File excelFile = new File("ExcelFiles/1_Unique_eCATT.xlsx");
+        File excelFile = new File("src/main/resources/1_Unique_eCATT.xlsx");
         XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(excelFile));
         XSSFSheet sheet = wb.getSheet("eCATT");
 

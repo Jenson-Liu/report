@@ -8,18 +8,35 @@
 <body>
 <div class="container">
     <h2>SHOW TABLE</h2>
-    <select class="combobox" onchange="selectoption(this)">
+    <select class="combobox" id="selectClass">
         <option></option>
         <option value="ECATT_MIGRATION_TO_RC">ECATT_MIGRATION_TO_RC</option>
         <option value="ECATT_NO_MIGRATION">ECATT_NO_MIGRATION</option>
         <option value="ECATT_FORCE_IMG">ECATT_FORCE_IMG</option>
         <option value="ECATT_MULT_TYPE">ECATT_MULT_TYPE</option>
     </select>
+    <select class="combobox" id="selectLob">
+        <option></option>
+        <option value="Scheduled for CE 1908">Scheduled for CE 1908</option>
+        <option value="Scheduled for CE 1911">Scheduled for CE 1911</option>
+        <option value="Object obsolete">Object obsolete</option>
+        <option value="To be solved by Central BC">To be solved by Central BC</option>
+        <option value="Can currently be ignored">Can currently be ignored</option>
+        <option value="In clarification">In clarification</option>
+    </select>
+    <button type="button" class="btn btn-success" onclick="selectoption()">Execute</button>
+    <button type="button" class="btn btn-primary span3 offset2" onclick="backtoIndex()">Back to Index</button>
+    <script>
+        function backtoIndex() {
+            window.location.href = "/report/index";
+        }
+    </script>
     <table class="table">
         <thead>
         <tr>
             <th>#</th>
             <th>ACTID</th>
+            <th>Description</th>
             <th>eCATT Classification done by LOB</th>
             <th>LoB Commitment Status X/4 S/4 Public Cloud 1911 </th>
         </tr>
@@ -44,6 +61,8 @@
                         "</td>\n" +
                         "            <td>" +data.data[i].accid +
                         "</td>\n" +
+                        "            <td>" +data.data[i].text +
+                        "</td>\n" +
                         "            <td>" +data.data[i].ecattclassificationdonebylob +
                         "</td>\n" +
                         "            <td>" +data.data[i].loccommitmentstatuspubliccloud1911 +
@@ -59,9 +78,10 @@
         window.location.href = "tableshow?id="+data.id;
     }
     function selectoption(data) {
-        console.log(data.value);
+        var selectClass = $("#selectClass").val();
+        var selectLob = $("#selectLob").val();
         $.ajax({
-            url: "/report/getPercentbyClasseach/"+data.value,//请求地址
+            url: "/report/getBoth?selectClass="+selectClass+"&selectLob="+selectLob,//请求地址
             contentType: "application/json;charset=UTF-8",
             data: {},
             type: "get",//提交的方式
@@ -75,6 +95,8 @@
                         "</td>\n" +
                         "            <td>" +data.data[i].accid +
                         "</td>\n" +
+                          "            <td>" +data.data[i].text +
+                          "</td>\n" +
                         "            <td>" +data.data[i].ecattclassificationdonebylob +
                         "</td>\n" +
                         "            <td>" +data.data[i].loccommitmentstatuspubliccloud1911 +
