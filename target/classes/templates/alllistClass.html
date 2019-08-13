@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/bootstrap.min.css">
 </head>
-<script src="../static/jquery-3.4.1.min.js"></script>
+<script src="../static/jquery.min.js"></script>
 <script src="../static/bootstrap.min.js"></script>
 <body>
 <div class="container">
@@ -12,7 +12,7 @@
         <option></option>
         <option value="ECATT_MIGRATION_TO_RC">ECATT_MIGRATION_TO_RC</option>
         <option value="ECATT_NO_MIGRATION">ECATT_NO_MIGRATION</option>
-        <option value="ECATT_FORCE_IMG">ECATT_FORCE_IMG</option>
+        <option value="ECATT_SPECIALCASE">ECATT_SPECIALCASE</option>
         <option value="ECATT_MULT_TYPE">ECATT_MULT_TYPE</option>
     </select>
     <select class="combobox" id="selectLob">
@@ -63,7 +63,7 @@
                         "</td>\n" +
                         "            <td>" +data.data[i].text +
                         "</td>\n" +
-                        "            <td>" +data.data[i].ecattclassificationdonebylob +
+                        "            <td>" +data.data[i].ecattclassificationce1911donebylob +
                         "</td>\n" +
                         "            <td>" +data.data[i].loccommitmentstatuspubliccloud1911 +
                         "</td>\n" +
@@ -97,10 +97,10 @@
                         "</td>\n" +
                           "            <td>" +data.data[i].text +
                           "</td>\n" +
-                        "            <td>" +data.data[i].ecattclassificationdonebylob +
-                        "</td>\n" +
-                        "            <td>" +data.data[i].loccommitmentstatuspubliccloud1911 +
-                        "</td>\n" +
+                          "            <td>" +data.data[i].ecattclassificationce1911donebylob +
+                          "</td>\n" +
+                          "            <td>" +data.data[i].loccommitmentstatuspubliccloud1911 +
+                          "</td>\n" +
                         "        </tr>";
 
                 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Index Page</title>
+    <link rel="stylesheet" href="/static/bootstrap3/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap3/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span10">
+            <nav class="navbar navbar-default navbar-light" style="background-color: #e3f2fd;" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header systemLab">
+                        <a class="navbar-brand" href="#">报表系统</a>
+                    </div>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">查看所有系统</a></li>
+                            <li class="active"><a href="#">上传文件</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <form enctype="multipart/form-data" method="post" name="fileinfo">
+            <div class="row">
+                <div class="col-xs-1">
+                    <label>File to stash:</label>
+                </div>
+                <div class="col-xs-2">
+                    <input type="file" name="file" multiple="multiple" />
+                </div>
+                <div class="col-xs-1">
+                    <input type="submit" class="btn btn-success" value="Stash the file!" />
+                </div>
+            </div>
+        </form>
+
+        <script>
+            var form = document.forms.namedItem("fileinfo");
+            form.addEventListener('submit', function(ev) {
+
+                var oOutput = document.querySelector("div"),
+                    oData = new FormData(form);
+
+                oData.append("CustomField", "This is some extra data");
+                var oReq = new XMLHttpRequest();
+                oReq.open("POST", "/report/file/upload", true);
+                oReq.onload = function(oEvent) {
+                    if (oReq.status == 200) {
+                        oOutput.innerHTML = "Uploaded!";
+                    } else {
+                        oOutput.innerHTML = "Error " + oReq.status + " occurred when trying to upload your file.<br \/>";
+                    }
+                };
+                oReq.send(oData);
+                ev.preventDefault();
+            }, false);
+        </script>
+    </div>
+</div>
+
+</body>
+</html>

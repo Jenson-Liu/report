@@ -12,6 +12,9 @@ public class eCATTPercent {
         this.num = num;
         this.percent = percent;
     }
+    public eCATTPercent(int num) {
+        this.num = num;
+    }
 
     public int getNum() {
         return num;

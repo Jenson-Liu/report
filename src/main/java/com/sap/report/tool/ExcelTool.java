@@ -112,22 +112,27 @@ public class ExcelTool {
                         unique_eCATT.setLobresponsibleforreplacementclass("");
                     }
                     try {
-                        unique_eCATT.setEcattclassificationdonebylob(sheet.getRow(i).getCell(14).getStringCellValue());
+                        unique_eCATT.setecattclassificationce1908donebylob2019(sheet.getRow(i).getCell(14).getStringCellValue());
                     }catch (NullPointerException e){
-                        unique_eCATT.setEcattclassificationdonebylob("");
+                        unique_eCATT.setecattclassificationce1908donebylob2019("");
                     }
                     try {
-                        unique_eCATT.setResponsiblelob(sheet.getRow(i).getCell(15).getStringCellValue());
+                        unique_eCATT.setecattclassificationce1911donebylob(sheet.getRow(i).getCell(15).getStringCellValue());
+                    }catch (NullPointerException e){
+                        unique_eCATT.setecattclassificationce1911donebylob("");
+                    }
+                    try {
+                        unique_eCATT.setResponsiblelob(sheet.getRow(i).getCell(16).getStringCellValue());
                     }catch (NullPointerException e){
                         unique_eCATT.setResponsiblelob("");
                     }
                     try {
-                        unique_eCATT.setLobcomments(sheet.getRow(i).getCell(16).getStringCellValue());
+                        unique_eCATT.setLobcomments(sheet.getRow(i).getCell(17).getStringCellValue());
                     }catch (NullPointerException e){
                         unique_eCATT.setLobcomments("");
                     }
                     try {
-                        unique_eCATT.setLoccommitmentstatuspubliccloud1911(sheet.getRow(i).getCell(19).getStringCellValue());
+                        unique_eCATT.setLoccommitmentstatuspubliccloud1911(sheet.getRow(i).getCell(20).getStringCellValue());
                     }catch (NullPointerException e){
                         unique_eCATT.setLoccommitmentstatuspubliccloud1911("");
                     }

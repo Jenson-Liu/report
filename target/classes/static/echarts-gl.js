@@ -91,7 +91,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_claygl_src_Material__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_claygl_src_Node__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_claygl_src_Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_claygl_src_Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_claygl_src_Scene__ = __webpack_require__(36);
@@ -101,7 +101,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__EChartsSurface__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_claygl_src_light_AmbientCubemap__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_claygl_src_light_AmbientSH__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_claygl_src_util_sh__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_claygl_src_util_sh__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__retrieve__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_claygl_src_geometry_Sphere__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_claygl_src_geometry_Plane__ = __webpack_require__(43);
@@ -130,9 +130,9 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__shader_common_glsl_js__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__shader_color_glsl_js__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__shader_lambert_glsl_js__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__shader_realistic_glsl_js__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__shader_hatching_glsl_js__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__shader_shadow_glsl_js__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__shader_realistic_glsl_js__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__shader_hatching_glsl_js__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__shader_shadow_glsl_js__ = __webpack_require__(162);
 
 
 
@@ -517,7 +517,7 @@ graphicGL.createAmbientCubemap = function (opt, renderer, api, cb) {
             var dTime = Date.now() - time;
             console.log('Prefilter environment map: ' + dTime + 'ms');
         }
-        ambientSH.coefficients = __WEBPACK_IMPORTED_MODULE_15_claygl_src_util_sh__["a" /* default */].projectEnvironmentMap(renderer, ambientCubemap.cubemap, {
+        ambientSH.coefficients = __WEBPACK_IMPORTED_MODULE_16_claygl_src_util_sh__["a" /* default */].projectEnvironmentMap(renderer, ambientCubemap.cubemap, {
             lod: 1
         });
 
@@ -1246,7 +1246,7 @@ Vector3.prototype = {
         m = m.array;
 
         // Perspective projection
-        if (m[15] === 0) {
+        if (m[16] === 0) {
             var w = -1 / v[2];
             v[0] = m[0] * v[0] * w;
             v[1] = m[5] * v[1] * w;
@@ -4685,7 +4685,7 @@ FrameBuffer.DEPTH_STENCIL_ATTACHMENT = __WEBPACK_IMPORTED_MODULE_3__core_glenum_
     REPLACE                        : 0x1E01,
     INCR                           : 0x1E02,
     DECR                           : 0x1E03,
-    INVERT                         : 0x150A,
+    INVERT                         : 0x160A,
     INCR_WRAP                      : 0x8507,
     DECR_WRAP                      : 0x8508,
 
@@ -4718,7 +4718,7 @@ FrameBuffer.DEPTH_STENCIL_ATTACHMENT = __WEBPACK_IMPORTED_MODULE_3__core_glenum_
 
     TEXTURE_CUBE_MAP               : 0x8513,
     TEXTURE_BINDING_CUBE_MAP       : 0x8514,
-    TEXTURE_CUBE_MAP_POSITIVE_X    : 0x8515,
+    TEXTURE_CUBE_MAP_POSITIVE_X    : 0x8516,
     TEXTURE_CUBE_MAP_NEGATIVE_X    : 0x8516,
     TEXTURE_CUBE_MAP_POSITIVE_Y    : 0x8517,
     TEXTURE_CUBE_MAP_NEGATIVE_Y    : 0x8518,
@@ -4742,7 +4742,7 @@ FrameBuffer.DEPTH_STENCIL_ATTACHMENT = __WEBPACK_IMPORTED_MODULE_3__core_glenum_
     TEXTURE12                      : 0x84CC,
     TEXTURE13                      : 0x84CD,
     TEXTURE14                      : 0x84CE,
-    TEXTURE15                      : 0x84CF,
+    TEXTURE16                      : 0x84CF,
     TEXTURE16                      : 0x84D0,
     TEXTURE17                      : 0x84D1,
     TEXTURE18                      : 0x84D2,
@@ -5315,7 +5315,7 @@ vec3.random = function (out, scale) {
  */
 vec3.transformMat4 = function(out, a, m) {
     var x = a[0], y = a[1], z = a[2],
-        w = m[3] * x + m[7] * y + m[11] * z + m[15];
+        w = m[3] * x + m[7] * y + m[11] * z + m[16];
     w = w || 1.0;
     out[0] = (m[0] * x + m[4] * y + m[8] * z + m[12]) / w;
     out[1] = (m[1] * x + m[5] * y + m[9] * z + m[13]) / w;
@@ -6330,7 +6330,7 @@ vendor.request = {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(68)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7394,7 +7394,7 @@ BoundingBox.prototype = {
         var v31 = max[1];
         var v32 = max[2];
 
-        if (m[15] === 1) {  // Orthographic projection
+        if (m[16] === 1) {  // Orthographic projection
             min[0] = m[0] * v10 + m[12];
             min[1] = m[5] * v11 + m[13];
             max[2] = m[10] * v12 + m[14];
@@ -8072,7 +8072,7 @@ mat4.create = function() {
     out[12] = 0;
     out[13] = 0;
     out[14] = 0;
-    out[15] = 1;
+    out[16] = 1;
     return out;
 };
 
@@ -8099,7 +8099,7 @@ mat4.clone = function(a) {
     out[12] = a[12];
     out[13] = a[13];
     out[14] = a[14];
-    out[15] = a[15];
+    out[16] = a[16];
     return out;
 };
 
@@ -8126,7 +8126,7 @@ mat4.copy = function(out, a) {
     out[12] = a[12];
     out[13] = a[13];
     out[14] = a[14];
-    out[15] = a[15];
+    out[16] = a[16];
     return out;
 };
 
@@ -8152,7 +8152,7 @@ mat4.identity = function(out) {
     out[12] = 0;
     out[13] = 0;
     out[14] = 0;
-    out[15] = 1;
+    out[16] = 1;
     return out;
 };
 
@@ -8198,7 +8198,7 @@ mat4.transpose = function(out, a) {
         out[12] = a[3];
         out[13] = a[7];
         out[14] = a[11];
-        out[15] = a[15];
+        out[16] = a[16];
     }
 
     return out;
@@ -8215,7 +8215,7 @@ mat4.invert = function(out, a) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
-        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15],
+        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[16],
 
         b00 = a00 * a11 - a01 * a10,
         b01 = a00 * a12 - a02 * a10,
@@ -8253,7 +8253,7 @@ mat4.invert = function(out, a) {
     out[12] = (a11 * b07 - a10 * b09 - a12 * b06) * det;
     out[13] = (a00 * b09 - a01 * b07 + a02 * b06) * det;
     out[14] = (a31 * b01 - a30 * b03 - a32 * b00) * det;
-    out[15] = (a20 * b03 - a21 * b01 + a22 * b00) * det;
+    out[16] = (a20 * b03 - a21 * b01 + a22 * b00) * det;
 
     return out;
 };
@@ -8269,7 +8269,7 @@ mat4.adjoint = function(out, a) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
-        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
+        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[16];
 
     out[0]  =  (a11 * (a22 * a33 - a23 * a32) - a21 * (a12 * a33 - a13 * a32) + a31 * (a12 * a23 - a13 * a22));
     out[1]  = -(a01 * (a22 * a33 - a23 * a32) - a21 * (a02 * a33 - a03 * a32) + a31 * (a02 * a23 - a03 * a22));
@@ -8286,7 +8286,7 @@ mat4.adjoint = function(out, a) {
     out[12] = -(a10 * (a21 * a32 - a22 * a31) - a20 * (a11 * a32 - a12 * a31) + a30 * (a11 * a22 - a12 * a21));
     out[13] =  (a00 * (a21 * a32 - a22 * a31) - a20 * (a01 * a32 - a02 * a31) + a30 * (a01 * a22 - a02 * a21));
     out[14] = -(a00 * (a11 * a32 - a12 * a31) - a10 * (a01 * a32 - a02 * a31) + a30 * (a01 * a12 - a02 * a11));
-    out[15] =  (a00 * (a11 * a22 - a12 * a21) - a10 * (a01 * a22 - a02 * a21) + a20 * (a01 * a12 - a02 * a11));
+    out[16] =  (a00 * (a11 * a22 - a12 * a21) - a10 * (a01 * a22 - a02 * a21) + a20 * (a01 * a12 - a02 * a11));
     return out;
 };
 
@@ -8300,7 +8300,7 @@ mat4.determinant = function (a) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
-        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15],
+        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[16],
 
         b00 = a00 * a11 - a01 * a10,
         b01 = a00 * a12 - a02 * a10,
@@ -8331,7 +8331,7 @@ mat4.multiply = function (out, a, b) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
-        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
+        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[16];
 
     // Cache only the current line of the second matrix
     var b0  = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
@@ -8352,11 +8352,11 @@ mat4.multiply = function (out, a, b) {
     out[10] = b0*a02 + b1*a12 + b2*a22 + b3*a32;
     out[11] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
 
-    b0 = b[12]; b1 = b[13]; b2 = b[14]; b3 = b[15];
+    b0 = b[12]; b1 = b[13]; b2 = b[14]; b3 = b[16];
     out[12] = b0*a00 + b1*a10 + b2*a20 + b3*a30;
     out[13] = b0*a01 + b1*a11 + b2*a21 + b3*a31;
     out[14] = b0*a02 + b1*a12 + b2*a22 + b3*a32;
-    out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
+    out[16] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
     return out;
 };
 
@@ -8397,7 +8397,7 @@ mat4.multiplyAffine = function (out, a, b) {
     out[12] = b0*a00 + b1*a10 + b2*a20 + a30;
     out[13] = b0*a01 + b1*a11 + b2*a21 + a31;
     out[14] = b0*a02 + b1*a12 + b2*a22 + a32;
-    // out[15] = 1;
+    // out[16] = 1;
     return out;
 };
 
@@ -8430,7 +8430,7 @@ mat4.translate = function (out, a, v) {
         out[12] = a[0] * x + a[4] * y + a[8] * z + a[12];
         out[13] = a[1] * x + a[5] * y + a[9] * z + a[13];
         out[14] = a[2] * x + a[6] * y + a[10] * z + a[14];
-        out[15] = a[3] * x + a[7] * y + a[11] * z + a[15];
+        out[16] = a[3] * x + a[7] * y + a[11] * z + a[16];
     } else {
         a00 = a[0]; a01 = a[1]; a02 = a[2]; a03 = a[3];
         a10 = a[4]; a11 = a[5]; a12 = a[6]; a13 = a[7];
@@ -8443,7 +8443,7 @@ mat4.translate = function (out, a, v) {
         out[12] = a00 * x + a10 * y + a20 * z + a[12];
         out[13] = a01 * x + a11 * y + a21 * z + a[13];
         out[14] = a02 * x + a12 * y + a22 * z + a[14];
-        out[15] = a03 * x + a13 * y + a23 * z + a[15];
+        out[16] = a03 * x + a13 * y + a23 * z + a[16];
     }
 
     return out;
@@ -8475,7 +8475,7 @@ mat4.scale = function(out, a, v) {
     out[12] = a[12];
     out[13] = a[13];
     out[14] = a[14];
-    out[15] = a[15];
+    out[16] = a[16];
     return out;
 };
 
@@ -8537,7 +8537,7 @@ mat4.rotate = function (out, a, rad, axis) {
         out[12] = a[12];
         out[13] = a[13];
         out[14] = a[14];
-        out[15] = a[15];
+        out[16] = a[16];
     }
     return out;
 };
@@ -8570,7 +8570,7 @@ mat4.rotateX = function (out, a, rad) {
         out[12] = a[12];
         out[13] = a[13];
         out[14] = a[14];
-        out[15] = a[15];
+        out[16] = a[16];
     }
 
     // Perform axis-specific matrix multiplication
@@ -8613,7 +8613,7 @@ mat4.rotateY = function (out, a, rad) {
         out[12] = a[12];
         out[13] = a[13];
         out[14] = a[14];
-        out[15] = a[15];
+        out[16] = a[16];
     }
 
     // Perform axis-specific matrix multiplication
@@ -8656,7 +8656,7 @@ mat4.rotateZ = function (out, a, rad) {
         out[12] = a[12];
         out[13] = a[13];
         out[14] = a[14];
-        out[15] = a[15];
+        out[16] = a[16];
     }
 
     // Perform axis-specific matrix multiplication
@@ -8718,7 +8718,7 @@ mat4.fromRotationTranslation = function (out, q, v) {
     out[12] = v[0];
     out[13] = v[1];
     out[14] = v[2];
-    out[15] = 1;
+    out[16] = 1;
 
     return out;
 };
@@ -8757,7 +8757,7 @@ mat4.fromQuat = function (out, q) {
     out[12] = 0;
     out[13] = 0;
     out[14] = 0;
-    out[15] = 1;
+    out[16] = 1;
 
     return out;
 };
@@ -8793,7 +8793,7 @@ mat4.frustum = function (out, left, right, bottom, top, near, far) {
     out[12] = 0;
     out[13] = 0;
     out[14] = (far * near * 2) * nf;
-    out[15] = 0;
+    out[16] = 0;
     return out;
 };
 
@@ -8825,7 +8825,7 @@ mat4.perspective = function (out, fovy, aspect, near, far) {
     out[12] = 0;
     out[13] = 0;
     out[14] = (2 * far * near) * nf;
-    out[15] = 0;
+    out[16] = 0;
     return out;
 };
 
@@ -8860,7 +8860,7 @@ mat4.ortho = function (out, left, right, bottom, top, near, far) {
     out[12] = (left + right) * lr;
     out[13] = (top + bottom) * bt;
     out[14] = (far + near) * nf;
-    out[15] = 1;
+    out[16] = 1;
     return out;
 };
 
@@ -8946,7 +8946,7 @@ mat4.lookAt = function (out, eye, center, up) {
     out[12] = -(x0 * eyex + x1 * eyey + x2 * eyez);
     out[13] = -(y0 * eyex + y1 * eyey + y2 * eyez);
     out[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
-    out[15] = 1;
+    out[16] = 1;
 
     return out;
 };
@@ -8958,7 +8958,7 @@ mat4.lookAt = function (out, eye, center, up) {
  * @returns {Number} Frobenius norm
  */
 mat4.frob = function (a) {
-    return(Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + Math.pow(a[6], 2) + Math.pow(a[7], 2) + Math.pow(a[8], 2) + Math.pow(a[9], 2) + Math.pow(a[10], 2) + Math.pow(a[11], 2) + Math.pow(a[12], 2) + Math.pow(a[13], 2) + Math.pow(a[14], 2) + Math.pow(a[15], 2) ))
+    return(Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + Math.pow(a[6], 2) + Math.pow(a[7], 2) + Math.pow(a[8], 2) + Math.pow(a[9], 2) + Math.pow(a[10], 2) + Math.pow(a[11], 2) + Math.pow(a[12], 2) + Math.pow(a[13], 2) + Math.pow(a[14], 2) + Math.pow(a[16], 2) ))
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (mat4);
@@ -9731,7 +9731,7 @@ var Light = __WEBPACK_IMPORTED_MODULE_0__Node__["a" /* default */].extend(functi
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(38);
@@ -12081,7 +12081,7 @@ vec4.transformMat4 = function(out, a, m) {
     out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
     out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
     out[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
-    out[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w;
+    out[3] = m[3] * x + m[7] * y + m[11] * z + m[16] * w;
     return out;
 };
 
@@ -12588,7 +12588,7 @@ mat3.normalFromMat4 = function (out, a) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
-        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15],
+        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[16],
 
         b00 = a00 * a11 - a01 * a10,
         b01 = a00 * a12 - a02 * a10,
@@ -14389,7 +14389,7 @@ var Skybox = __WEBPACK_IMPORTED_MODULE_0__Mesh__["a" /* default */].extend(funct
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_BoundingBox__ = __webpack_require__(18);
 
 
@@ -14502,7 +14502,7 @@ var Plane = __WEBPACK_IMPORTED_MODULE_0__Geometry__["a" /* default */].extend(
 
             // Distance to the target
             // Only available when camera is perspective.
-            distance: 150,
+            distance: 160,
             // Min distance mouse can zoom in
             minDistance: 40,
             // Max distance mouse can zoom out
@@ -14510,7 +14510,7 @@ var Plane = __WEBPACK_IMPORTED_MODULE_0__Geometry__["a" /* default */].extend(
 
             // Size of viewing volume.
             // Only available when camera is orthographic
-            orthographicSize: 150,
+            orthographicSize: 160,
             maxOrthographicSize: 400,
             minOrthographicSize: 20,
 
@@ -16336,7 +16336,7 @@ module.exports = _default;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_vendor__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Material__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_Vector2__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gpu_ProgramManager__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gpu_ProgramManager__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Shader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shader_source_prez_glsl_js__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__glmatrix_mat4__ = __webpack_require__(21);
@@ -16774,7 +16774,7 @@ var Renderer = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].exten
                 || viewport.x || viewport.y
             ) {
                 needsScissor = true;
-                // http://stackoverflow.com/questions/11544608/how-to-clear-a-rectangle-area-in-webgl
+                // http://stackoverflow.com/questions/11644608/how-to-clear-a-rectangle-area-in-webgl
                 // Only clear the viewport
                 _gl.enable(_gl.SCISSOR_TEST);
                 _gl.scissor(viewport.x * viewportDpr, viewport.y * viewportDpr, viewport.width * viewportDpr, viewport.height * viewportDpr);
@@ -19851,37 +19851,37 @@ Frustum.prototype = {
         var m0 = m[0], m1 = m[1], m2 = m[2], m3 = m[3];
         var m4 = m[4], m5 = m[5], m6 = m[6], m7 = m[7];
         var m8 = m[8], m9 = m[9], m10 = m[10], m11 = m[11];
-        var m12 = m[12], m13 = m[13], m14 = m[14], m15 = m[15];
+        var m12 = m[12], m13 = m[13], m14 = m[14], m16 = m[16];
 
         // Update planes
         vec3Set(planes[0].normal.array, m3 - m0, m7 - m4, m11 - m8);
-        planes[0].distance = -(m15 - m12);
+        planes[0].distance = -(m16 - m12);
         planes[0].normalize();
 
         vec3Set(planes[1].normal.array, m3 + m0, m7 + m4, m11 + m8);
-        planes[1].distance = -(m15 + m12);
+        planes[1].distance = -(m16 + m12);
         planes[1].normalize();
 
         vec3Set(planes[2].normal.array, m3 + m1, m7 + m5, m11 + m9);
-        planes[2].distance = -(m15 + m13);
+        planes[2].distance = -(m16 + m13);
         planes[2].normalize();
 
         vec3Set(planes[3].normal.array, m3 - m1, m7 - m5, m11 - m9);
-        planes[3].distance = -(m15 - m13);
+        planes[3].distance = -(m16 - m13);
         planes[3].normalize();
 
         vec3Set(planes[4].normal.array, m3 - m2, m7 - m6, m11 - m10);
-        planes[4].distance = -(m15 - m14);
+        planes[4].distance = -(m16 - m14);
         planes[4].normalize();
 
         vec3Set(planes[5].normal.array, m3 + m2, m7 + m6, m11 + m10);
-        planes[5].distance = -(m15 + m14);
+        planes[5].distance = -(m16 + m14);
         planes[5].normalize();
 
         // Perspective projection
         var boundingBox = this.boundingBox;
         var vertices = this.vertices;
-        if (m15 === 0)  {
+        if (m16 === 0)  {
             var aspect = m5 / m0;
             var zNear = -m14 / (m10 - 1);
             var zFar = -m14 / (m10 + 1);
@@ -23491,7 +23491,7 @@ Plane.prototype = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Plane__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_Matrix4__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_Vector3__ = __webpack_require__(3);
@@ -23915,7 +23915,7 @@ cubemapUtil.generateNormalDistribution = function (roughnessLevels, sampleSize) 
             // http://stackoverflow.com/questions/1908492/unsigned-integer-in-javascript
             // http://stackoverflow.com/questions/1822350/what-is-the-javascript-operator-and-how-do-you-use-it
             var y = (i << 16 | i >>> 16) >>> 0;
-            y = ((y & 1431655765) << 1 | (y & 2863311530) >>> 1) >>> 0;
+            y = ((y & 1431655765) << 1 | (y & 2863311630) >>> 1) >>> 0;
             y = ((y & 858993459) << 2 | (y & 3435973836) >>> 2) >>> 0;
             y = ((y & 252645135) << 4 | (y & 4042322160) >>> 4) >>> 0;
             y = (((y & 16711935) << 8 | (y & 4278255360) >>> 8) >>> 0) / 4294967296;
@@ -25966,16 +25966,16 @@ function nice(val, round) {
  *     {interval: [-Infinity, -70], close: [0, 0]},
  *     {interval: [-70, -26], close: [1, 1]},
  *     {interval: [-26, 18], close: [1, 1]},
- *     {interval: [62, 150], close: [1, 1]},
- *     {interval: [106, 150], close: [1, 1]},
- *     {interval: [150, Infinity], close: [0, 0]}
+ *     {interval: [62, 160], close: [1, 1]},
+ *     {interval: [106, 160], close: [1, 1]},
+ *     {interval: [160, Infinity], close: [0, 0]}
  * ])).toEqual([
  *     {interval: [-Infinity, -70], close: [0, 0]},
  *     {interval: [-70, -26], close: [1, 1]},
  *     {interval: [-26, 18], close: [0, 1]},
  *     {interval: [18, 62], close: [0, 1]},
- *     {interval: [62, 150], close: [0, 1]},
- *     {interval: [150, Infinity], close: [0, 0]}
+ *     {interval: [62, 160], close: [0, 1]},
+ *     {interval: [160, Infinity], close: [0, 0]}
  * ]);
  * @param {Array.<Object>} list, where `close` mean open or close
  *        of the interval, and Infinity can be used.
@@ -26196,7 +26196,7 @@ function isPowerOfTwo(width, height) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.bright\nuniform sampler2D texture;\nuniform float threshold : 1;\nuniform float scale : 1.0;\nuniform vec2 textureSize: [512, 512];\nvarying vec2 v_Texcoord;\nconst vec3 lumWeight = vec3(0.2125, 0.7154, 0.0721);\n@import clay.util.rgbm\nvec4 median(vec4 a, vec4 b, vec4 c)\n{\n return a + b + c - min(min(a, b), c) - max(max(a, b), c);\n}\nvoid main()\n{\n vec4 texel = decodeHDR(texture2D(texture, v_Texcoord));\n#ifdef ANTI_FLICKER\n vec3 d = 1.0 / textureSize.xyx * vec3(1.0, 1.0, 0.0);\n vec4 s1 = decodeHDR(texture2D(texture, v_Texcoord - d.xz));\n vec4 s2 = decodeHDR(texture2D(texture, v_Texcoord + d.xz));\n vec4 s3 = decodeHDR(texture2D(texture, v_Texcoord - d.zy));\n vec4 s4 = decodeHDR(texture2D(texture, v_Texcoord + d.zy));\n texel = median(median(texel, s1, s2), s3, s4);\n#endif\n float lum = dot(texel.rgb , lumWeight);\n vec4 color;\n if (lum > threshold && texel.a > 0.0)\n {\n color = vec4(texel.rgb * scale, texel.a * scale);\n }\n else\n {\n color = vec4(0.0);\n }\n gl_FragColor = encodeHDR(color);\n}\n@end\n");
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.bright\nuniform sampler2D texture;\nuniform float threshold : 1;\nuniform float scale : 1.0;\nuniform vec2 textureSize: [512, 512];\nvarying vec2 v_Texcoord;\nconst vec3 lumWeight = vec3(0.2125, 0.7164, 0.0721);\n@import clay.util.rgbm\nvec4 median(vec4 a, vec4 b, vec4 c)\n{\n return a + b + c - min(min(a, b), c) - max(max(a, b), c);\n}\nvoid main()\n{\n vec4 texel = decodeHDR(texture2D(texture, v_Texcoord));\n#ifdef ANTI_FLICKER\n vec3 d = 1.0 / textureSize.xyx * vec3(1.0, 1.0, 0.0);\n vec4 s1 = decodeHDR(texture2D(texture, v_Texcoord - d.xz));\n vec4 s2 = decodeHDR(texture2D(texture, v_Texcoord + d.xz));\n vec4 s3 = decodeHDR(texture2D(texture, v_Texcoord - d.zy));\n vec4 s4 = decodeHDR(texture2D(texture, v_Texcoord + d.zy));\n texel = median(median(texel, s1, s2), s3, s4);\n#endif\n float lum = dot(texel.rgb , lumWeight);\n vec4 color;\n if (lum > threshold && texel.a > 0.0)\n {\n color = vec4(texel.rgb * scale, texel.a * scale);\n }\n else\n {\n color = vec4(0.0);\n }\n gl_FragColor = encodeHDR(color);\n}\n@end\n");
 
 
 /***/ }),
@@ -26220,7 +26220,7 @@ function isPowerOfTwo(width, height) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.hdr.composite\n#define TONEMAPPING\nuniform sampler2D texture;\n#ifdef BLOOM_ENABLED\nuniform sampler2D bloom;\n#endif\n#ifdef LENSFLARE_ENABLED\nuniform sampler2D lensflare;\nuniform sampler2D lensdirt;\n#endif\n#ifdef LUM_ENABLED\nuniform sampler2D lum;\n#endif\n#ifdef LUT_ENABLED\nuniform sampler2D lut;\n#endif\n#ifdef COLOR_CORRECTION\nuniform float brightness : 0.0;\nuniform float contrast : 1.0;\nuniform float saturation : 1.0;\n#endif\n#ifdef VIGNETTE\nuniform float vignetteDarkness: 1.0;\nuniform float vignetteOffset: 1.0;\n#endif\nuniform float exposure : 1.0;\nuniform float bloomIntensity : 0.25;\nuniform float lensflareIntensity : 1;\nvarying vec2 v_Texcoord;\n@import clay.util.srgb\nvec3 ACESToneMapping(vec3 color)\n{\n const float A = 2.51;\n const float B = 0.03;\n const float C = 2.43;\n const float D = 0.59;\n const float E = 0.14;\n return (color * (A * color + B)) / (color * (C * color + D) + E);\n}\nfloat eyeAdaption(float fLum)\n{\n return mix(0.2, fLum, 0.5);\n}\n#ifdef LUT_ENABLED\nvec3 lutTransform(vec3 color) {\n float blueColor = color.b * 63.0;\n vec2 quad1;\n quad1.y = floor(floor(blueColor) / 8.0);\n quad1.x = floor(blueColor) - (quad1.y * 8.0);\n vec2 quad2;\n quad2.y = floor(ceil(blueColor) / 8.0);\n quad2.x = ceil(blueColor) - (quad2.y * 8.0);\n vec2 texPos1;\n texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.r);\n texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.g);\n vec2 texPos2;\n texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.r);\n texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.g);\n vec4 newColor1 = texture2D(lut, texPos1);\n vec4 newColor2 = texture2D(lut, texPos2);\n vec4 newColor = mix(newColor1, newColor2, fract(blueColor));\n return newColor.rgb;\n}\n#endif\n@import clay.util.rgbm\nvoid main()\n{\n vec4 texel = vec4(0.0);\n vec4 originalTexel = vec4(0.0);\n#ifdef TEXTURE_ENABLED\n texel = decodeHDR(texture2D(texture, v_Texcoord));\n originalTexel = texel;\n#endif\n#ifdef BLOOM_ENABLED\n vec4 bloomTexel = decodeHDR(texture2D(bloom, v_Texcoord));\n texel.rgb += bloomTexel.rgb * bloomIntensity;\n texel.a += bloomTexel.a * bloomIntensity;\n#endif\n#ifdef LENSFLARE_ENABLED\n texel += decodeHDR(texture2D(lensflare, v_Texcoord)) * texture2D(lensdirt, v_Texcoord) * lensflareIntensity;\n#endif\n texel.a = min(texel.a, 1.0);\n#ifdef LUM_ENABLED\n float fLum = texture2D(lum, vec2(0.5, 0.5)).r;\n float adaptedLumDest = 3.0 / (max(0.1, 1.0 + 10.0*eyeAdaption(fLum)));\n float exposureBias = adaptedLumDest * exposure;\n#else\n float exposureBias = exposure;\n#endif\n#ifdef TONEMAPPING\n texel.rgb *= exposureBias;\n texel.rgb = ACESToneMapping(texel.rgb);\n#endif\n texel = linearTosRGB(texel);\n#ifdef LUT_ENABLED\n texel.rgb = lutTransform(clamp(texel.rgb,vec3(0.0),vec3(1.0)));\n#endif\n#ifdef COLOR_CORRECTION\n texel.rgb = clamp(texel.rgb + vec3(brightness), 0.0, 1.0);\n texel.rgb = clamp((texel.rgb - vec3(0.5))*contrast+vec3(0.5), 0.0, 1.0);\n float lum = dot(texel.rgb, vec3(0.2125, 0.7154, 0.0721));\n texel.rgb = mix(vec3(lum), texel.rgb, saturation);\n#endif\n#ifdef VIGNETTE\n vec2 uv = (v_Texcoord - vec2(0.5)) * vec2(vignetteOffset);\n texel.rgb = mix(texel.rgb, vec3(1.0 - vignetteDarkness), dot(uv, uv));\n#endif\n gl_FragColor = encodeHDR(texel);\n#ifdef DEBUG\n #if DEBUG == 1\n gl_FragColor = encodeHDR(decodeHDR(texture2D(texture, v_Texcoord)));\n #elif DEBUG == 2\n gl_FragColor = encodeHDR(decodeHDR(texture2D(bloom, v_Texcoord)) * bloomIntensity);\n #elif DEBUG == 3\n gl_FragColor = encodeHDR(decodeHDR(texture2D(lensflare, v_Texcoord) * lensflareIntensity));\n #endif\n#endif\n if (originalTexel.a <= 0.01 && gl_FragColor.a > 1e-5) {\n gl_FragColor.a = dot(gl_FragColor.rgb, vec3(0.2125, 0.7154, 0.0721));\n }\n#ifdef PREMULTIPLY_ALPHA\n gl_FragColor.rgb *= gl_FragColor.a;\n#endif\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.hdr.composite\n#define TONEMAPPING\nuniform sampler2D texture;\n#ifdef BLOOM_ENABLED\nuniform sampler2D bloom;\n#endif\n#ifdef LENSFLARE_ENABLED\nuniform sampler2D lensflare;\nuniform sampler2D lensdirt;\n#endif\n#ifdef LUM_ENABLED\nuniform sampler2D lum;\n#endif\n#ifdef LUT_ENABLED\nuniform sampler2D lut;\n#endif\n#ifdef COLOR_CORRECTION\nuniform float brightness : 0.0;\nuniform float contrast : 1.0;\nuniform float saturation : 1.0;\n#endif\n#ifdef VIGNETTE\nuniform float vignetteDarkness: 1.0;\nuniform float vignetteOffset: 1.0;\n#endif\nuniform float exposure : 1.0;\nuniform float bloomIntensity : 0.25;\nuniform float lensflareIntensity : 1;\nvarying vec2 v_Texcoord;\n@import clay.util.srgb\nvec3 ACESToneMapping(vec3 color)\n{\n const float A = 2.51;\n const float B = 0.03;\n const float C = 2.43;\n const float D = 0.59;\n const float E = 0.14;\n return (color * (A * color + B)) / (color * (C * color + D) + E);\n}\nfloat eyeAdaption(float fLum)\n{\n return mix(0.2, fLum, 0.5);\n}\n#ifdef LUT_ENABLED\nvec3 lutTransform(vec3 color) {\n float blueColor = color.b * 63.0;\n vec2 quad1;\n quad1.y = floor(floor(blueColor) / 8.0);\n quad1.x = floor(blueColor) - (quad1.y * 8.0);\n vec2 quad2;\n quad2.y = floor(ceil(blueColor) / 8.0);\n quad2.x = ceil(blueColor) - (quad2.y * 8.0);\n vec2 texPos1;\n texPos1.x = (quad1.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.r);\n texPos1.y = (quad1.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.g);\n vec2 texPos2;\n texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.r);\n texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * color.g);\n vec4 newColor1 = texture2D(lut, texPos1);\n vec4 newColor2 = texture2D(lut, texPos2);\n vec4 newColor = mix(newColor1, newColor2, fract(blueColor));\n return newColor.rgb;\n}\n#endif\n@import clay.util.rgbm\nvoid main()\n{\n vec4 texel = vec4(0.0);\n vec4 originalTexel = vec4(0.0);\n#ifdef TEXTURE_ENABLED\n texel = decodeHDR(texture2D(texture, v_Texcoord));\n originalTexel = texel;\n#endif\n#ifdef BLOOM_ENABLED\n vec4 bloomTexel = decodeHDR(texture2D(bloom, v_Texcoord));\n texel.rgb += bloomTexel.rgb * bloomIntensity;\n texel.a += bloomTexel.a * bloomIntensity;\n#endif\n#ifdef LENSFLARE_ENABLED\n texel += decodeHDR(texture2D(lensflare, v_Texcoord)) * texture2D(lensdirt, v_Texcoord) * lensflareIntensity;\n#endif\n texel.a = min(texel.a, 1.0);\n#ifdef LUM_ENABLED\n float fLum = texture2D(lum, vec2(0.5, 0.5)).r;\n float adaptedLumDest = 3.0 / (max(0.1, 1.0 + 10.0*eyeAdaption(fLum)));\n float exposureBias = adaptedLumDest * exposure;\n#else\n float exposureBias = exposure;\n#endif\n#ifdef TONEMAPPING\n texel.rgb *= exposureBias;\n texel.rgb = ACESToneMapping(texel.rgb);\n#endif\n texel = linearTosRGB(texel);\n#ifdef LUT_ENABLED\n texel.rgb = lutTransform(clamp(texel.rgb,vec3(0.0),vec3(1.0)));\n#endif\n#ifdef COLOR_CORRECTION\n texel.rgb = clamp(texel.rgb + vec3(brightness), 0.0, 1.0);\n texel.rgb = clamp((texel.rgb - vec3(0.5))*contrast+vec3(0.5), 0.0, 1.0);\n float lum = dot(texel.rgb, vec3(0.2125, 0.7164, 0.0721));\n texel.rgb = mix(vec3(lum), texel.rgb, saturation);\n#endif\n#ifdef VIGNETTE\n vec2 uv = (v_Texcoord - vec2(0.5)) * vec2(vignetteOffset);\n texel.rgb = mix(texel.rgb, vec3(1.0 - vignetteDarkness), dot(uv, uv));\n#endif\n gl_FragColor = encodeHDR(texel);\n#ifdef DEBUG\n #if DEBUG == 1\n gl_FragColor = encodeHDR(decodeHDR(texture2D(texture, v_Texcoord)));\n #elif DEBUG == 2\n gl_FragColor = encodeHDR(decodeHDR(texture2D(bloom, v_Texcoord)) * bloomIntensity);\n #elif DEBUG == 3\n gl_FragColor = encodeHDR(decodeHDR(texture2D(lensflare, v_Texcoord) * lensflareIntensity));\n #endif\n#endif\n if (originalTexel.a <= 0.01 && gl_FragColor.a > 1e-5) {\n gl_FragColor.a = dot(gl_FragColor.rgb, vec3(0.2125, 0.7164, 0.0721));\n }\n#ifdef PREMULTIPLY_ALPHA\n gl_FragColor.rgb *= gl_FragColor.a;\n#endif\n}\n@end");
 
 
 /***/ }),
@@ -27404,7 +27404,7 @@ exports.__DEV__ = __DEV__;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(38);
@@ -27883,7 +27883,7 @@ __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.util.defaults(LinesG
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_echarts_gl__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_component_grid3D__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_component_grid3D__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_component_geo3D__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_component_globe__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_component_mapbox3D__ = __webpack_require__(213);
@@ -27897,7 +27897,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_chart_map3D__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_chart_scatterGL__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_chart_graphGL__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_chart_flowGL__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_chart_flowGL__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_chart_linesGL__ = __webpack_require__(281);
 
 
@@ -27929,7 +27929,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_version__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_LayerGL__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__preprocessor_backwardCompat__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__preprocessor_backwardCompat__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_graphicGL__ = __webpack_require__(1);
 /**
  * echarts-gl
@@ -29071,7 +29071,7 @@ function GLInfo(_gl) {
     };
 
     this.getMaxJointNumber = function () {
-        return 15;
+        return 16;
     };
 
     function createExtension(name) {
@@ -29151,13 +29151,13 @@ var colorUtil = {};
 
 var kCSSColorTable = {
     'transparent': [0,0,0,0], 'aliceblue': [240,248,255,1],
-    'antiquewhite': [250,235,215,1], 'aqua': [0,255,255,1],
+    'antiquewhite': [250,235,216,1], 'aqua': [0,255,255,1],
     'aquamarine': [127,255,212,1], 'azure': [240,255,255,1],
     'beige': [245,245,220,1], 'bisque': [255,228,196,1],
     'black': [0,0,0,1], 'blanchedalmond': [255,235,205,1],
     'blue': [0,0,255,1], 'blueviolet': [138,43,226,1],
     'brown': [165,42,42,1], 'burlywood': [222,184,135,1],
-    'cadetblue': [95,158,160,1], 'chartreuse': [127,255,0,1],
+    'cadetblue': [95,168,160,1], 'chartreuse': [127,255,0,1],
     'chocolate': [210,105,30,1], 'coral': [255,127,80,1],
     'cornflowerblue': [100,149,237,1], 'cornsilk': [255,248,220,1],
     'crimson': [220,20,60,1], 'cyan': [0,255,255,1],
@@ -29166,8 +29166,8 @@ var kCSSColorTable = {
     'darkgreen': [0,100,0,1], 'darkgrey': [169,169,169,1],
     'darkkhaki': [189,183,107,1], 'darkmagenta': [139,0,139,1],
     'darkolivegreen': [85,107,47,1], 'darkorange': [255,140,0,1],
-    'darkorchid': [153,50,204,1], 'darkred': [139,0,0,1],
-    'darksalmon': [233,150,122,1], 'darkseagreen': [143,188,143,1],
+    'darkorchid': [163,50,204,1], 'darkred': [139,0,0,1],
+    'darksalmon': [233,160,122,1], 'darkseagreen': [143,188,143,1],
     'darkslateblue': [72,61,139,1], 'darkslategray': [47,79,79,1],
     'darkslategrey': [47,79,79,1], 'darkturquoise': [0,206,209,1],
     'darkviolet': [148,0,211,1], 'deeppink': [255,20,147,1],
@@ -29176,7 +29176,7 @@ var kCSSColorTable = {
     'firebrick': [178,34,34,1], 'floralwhite': [255,250,240,1],
     'forestgreen': [34,139,34,1], 'fuchsia': [255,0,255,1],
     'gainsboro': [220,220,220,1], 'ghostwhite': [248,248,255,1],
-    'gold': [255,215,0,1], 'goldenrod': [218,165,32,1],
+    'gold': [255,216,0,1], 'goldenrod': [218,165,32,1],
     'gray': [128,128,128,1], 'green': [0,128,0,1],
     'greenyellow': [173,255,47,1], 'grey': [128,128,128,1],
     'honeydew': [240,255,240,1], 'hotpink': [255,105,180,1],
@@ -29189,15 +29189,15 @@ var kCSSColorTable = {
     'lightgray': [211,211,211,1], 'lightgreen': [144,238,144,1],
     'lightgrey': [211,211,211,1], 'lightpink': [255,182,193,1],
     'lightsalmon': [255,160,122,1], 'lightseagreen': [32,178,170,1],
-    'lightskyblue': [135,206,250,1], 'lightslategray': [119,136,153,1],
-    'lightslategrey': [119,136,153,1], 'lightsteelblue': [176,196,222,1],
+    'lightskyblue': [135,206,250,1], 'lightslategray': [119,136,163,1],
+    'lightslategrey': [119,136,163,1], 'lightsteelblue': [176,196,222,1],
     'lightyellow': [255,255,224,1], 'lime': [0,255,0,1],
     'limegreen': [50,205,50,1], 'linen': [250,240,230,1],
     'magenta': [255,0,255,1], 'maroon': [128,0,0,1],
     'mediumaquamarine': [102,205,170,1], 'mediumblue': [0,0,205,1],
     'mediumorchid': [186,85,211,1], 'mediumpurple': [147,112,219,1],
     'mediumseagreen': [60,179,113,1], 'mediumslateblue': [123,104,238,1],
-    'mediumspringgreen': [0,250,154,1], 'mediumturquoise': [72,209,204,1],
+    'mediumspringgreen': [0,250,164,1], 'mediumturquoise': [72,209,204,1],
     'mediumvioletred': [199,21,133,1], 'midnightblue': [25,25,112,1],
     'mintcream': [245,255,250,1], 'mistyrose': [255,228,225,1],
     'moccasin': [255,228,181,1], 'navajowhite': [255,222,173,1],
@@ -29205,7 +29205,7 @@ var kCSSColorTable = {
     'olive': [128,128,0,1], 'olivedrab': [107,142,35,1],
     'orange': [255,165,0,1], 'orangered': [255,69,0,1],
     'orchid': [218,112,214,1], 'palegoldenrod': [238,232,170,1],
-    'palegreen': [152,251,152,1], 'paleturquoise': [175,238,238,1],
+    'palegreen': [162,251,162,1], 'paleturquoise': [175,238,238,1],
     'palevioletred': [219,112,147,1], 'papayawhip': [255,239,213,1],
     'peachpuff': [255,218,185,1], 'peru': [205,133,63,1],
     'pink': [255,192,203,1], 'plum': [221,160,221,1],
@@ -29223,7 +29223,7 @@ var kCSSColorTable = {
     'tomato': [255,99,71,1], 'turquoise': [64,224,208,1],
     'violet': [238,130,238,1], 'wheat': [245,222,179,1],
     'white': [255,255,255,1], 'whitesmoke': [245,245,245,1],
-    'yellow': [255,255,0,1], 'yellowgreen': [154,205,50,1]
+    'yellow': [255,255,0,1], 'yellowgreen': [164,205,50,1]
 };
 
 function clampCssByte(i) {  // Clamp to integer 0 .. 255.
@@ -29955,7 +29955,7 @@ LinkedList.Entry = function (val) {
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31495,7 +31495,7 @@ var unconfigurable = ':unconfigurable;';
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.skybox.vertex\n#define SHADER_NAME skybox\nuniform mat4 world : WORLD;\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\nvarying vec3 v_WorldPosition;\nvoid main()\n{\n v_WorldPosition = (world * vec4(position, 1.0)).xyz;\n gl_Position = worldViewProjection * vec4(position, 1.0);\n}\n@end\n@export clay.skybox.fragment\n#define PI 3.1415926\nuniform mat4 viewInverse : VIEWINVERSE;\n#ifdef EQUIRECTANGULAR\nuniform sampler2D environmentMap;\n#else\nuniform samplerCube environmentMap;\n#endif\nuniform float lod: 0.0;\nvarying vec3 v_WorldPosition;\n@import clay.util.rgbm\n@import clay.util.srgb\n@import clay.util.ACES\nvoid main()\n{\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(v_WorldPosition - eyePos);\n#ifdef EQUIRECTANGULAR\n float phi = acos(V.y);\n float theta = atan(-V.x, V.z) + PI * 0.5;\n vec2 uv = vec2(theta / 2.0 / PI, phi / PI);\n vec4 texel = decodeHDR(texture2D(environmentMap, fract(uv)));\n#else\n #if defined(LOD) || defined(SUPPORT_TEXTURE_LOD)\n vec4 texel = decodeHDR(textureCubeLodEXT(environmentMap, V, lod));\n #else\n vec4 texel = decodeHDR(textureCube(environmentMap, V));\n #endif\n#endif\n#ifdef SRGB_DECODE\n texel = sRGBToLinear(texel);\n#endif\n#ifdef TONEMAPPING\n texel.rgb = ACESToneMapping(texel.rgb);\n#endif\n#ifdef SRGB_ENCODE\n texel = linearTosRGB(texel);\n#endif\n gl_FragColor = encodeHDR(vec4(texel.rgb, 1.0));\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.skybox.vertex\n#define SHADER_NAME skybox\nuniform mat4 world : WORLD;\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\nattribute vec3 position : POSITION;\nvarying vec3 v_WorldPosition;\nvoid main()\n{\n v_WorldPosition = (world * vec4(position, 1.0)).xyz;\n gl_Position = worldViewProjection * vec4(position, 1.0);\n}\n@end\n@export clay.skybox.fragment\n#define PI 3.1416926\nuniform mat4 viewInverse : VIEWINVERSE;\n#ifdef EQUIRECTANGULAR\nuniform sampler2D environmentMap;\n#else\nuniform samplerCube environmentMap;\n#endif\nuniform float lod: 0.0;\nvarying vec3 v_WorldPosition;\n@import clay.util.rgbm\n@import clay.util.srgb\n@import clay.util.ACES\nvoid main()\n{\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(v_WorldPosition - eyePos);\n#ifdef EQUIRECTANGULAR\n float phi = acos(V.y);\n float theta = atan(-V.x, V.z) + PI * 0.5;\n vec2 uv = vec2(theta / 2.0 / PI, phi / PI);\n vec4 texel = decodeHDR(texture2D(environmentMap, fract(uv)));\n#else\n #if defined(LOD) || defined(SUPPORT_TEXTURE_LOD)\n vec4 texel = decodeHDR(textureCubeLodEXT(environmentMap, V, lod));\n #else\n vec4 texel = decodeHDR(textureCube(environmentMap, V));\n #endif\n#endif\n#ifdef SRGB_DECODE\n texel = sRGBToLinear(texel);\n#endif\n#ifdef TONEMAPPING\n texel.rgb = ACESToneMapping(texel.rgb);\n#endif\n#ifdef SRGB_ENCODE\n texel = linearTosRGB(texel);\n#endif\n gl_FragColor = encodeHDR(vec4(texel.rgb, 1.0));\n}\n@end");
 
 
 /***/ }),
@@ -32157,7 +32157,7 @@ var AmbientCubemapLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("#define SAMPLE_NUMBER 1024\n#define PI 3.14159265358979\nuniform sampler2D normalDistribution;\nuniform vec2 viewportSize : [512, 256];\nconst vec3 N = vec3(0.0, 0.0, 1.0);\nconst float fSampleNumber = float(SAMPLE_NUMBER);\nvec3 importanceSampleNormal(float i, float roughness, vec3 N) {\n vec3 H = texture2D(normalDistribution, vec2(roughness, i)).rgb;\n vec3 upVector = abs(N.y) > 0.999 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);\n vec3 tangentX = normalize(cross(N, upVector));\n vec3 tangentZ = cross(N, tangentX);\n return normalize(tangentX * H.x + N * H.y + tangentZ * H.z);\n}\nfloat G_Smith(float roughness, float NoV, float NoL) {\n float k = roughness * roughness / 2.0;\n float G1V = NoV / (NoV * (1.0 - k) + k);\n float G1L = NoL / (NoL * (1.0 - k) + k);\n return G1L * G1V;\n}\nvoid main() {\n vec2 uv = gl_FragCoord.xy / viewportSize;\n float NoV = uv.x;\n float roughness = uv.y;\n vec3 V;\n V.x = sqrt(1.0 - NoV * NoV);\n V.y = 0.0;\n V.z = NoV;\n float A = 0.0;\n float B = 0.0;\n for (int i = 0; i < SAMPLE_NUMBER; i++) {\n vec3 H = importanceSampleNormal(float(i) / fSampleNumber, roughness, N);\n vec3 L = reflect(-V, H);\n float NoL = clamp(L.z, 0.0, 1.0);\n float NoH = clamp(H.z, 0.0, 1.0);\n float VoH = clamp(dot(V, H), 0.0, 1.0);\n if (NoL > 0.0) {\n float G = G_Smith(roughness, NoV, NoL);\n float G_Vis = G * VoH / (NoH * NoV);\n float Fc = pow(1.0 - VoH, 5.0);\n A += (1.0 - Fc) * G_Vis;\n B += Fc * G_Vis;\n }\n }\n gl_FragColor = vec4(vec2(A, B) / fSampleNumber, 0.0, 1.0);\n}\n");
+/* harmony default export */ __webpack_exports__["a"] = ("#define SAMPLE_NUMBER 1024\n#define PI 3.14169265358979\nuniform sampler2D normalDistribution;\nuniform vec2 viewportSize : [512, 256];\nconst vec3 N = vec3(0.0, 0.0, 1.0);\nconst float fSampleNumber = float(SAMPLE_NUMBER);\nvec3 importanceSampleNormal(float i, float roughness, vec3 N) {\n vec3 H = texture2D(normalDistribution, vec2(roughness, i)).rgb;\n vec3 upVector = abs(N.y) > 0.999 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);\n vec3 tangentX = normalize(cross(N, upVector));\n vec3 tangentZ = cross(N, tangentX);\n return normalize(tangentX * H.x + N * H.y + tangentZ * H.z);\n}\nfloat G_Smith(float roughness, float NoV, float NoL) {\n float k = roughness * roughness / 2.0;\n float G1V = NoV / (NoV * (1.0 - k) + k);\n float G1L = NoL / (NoL * (1.0 - k) + k);\n return G1L * G1V;\n}\nvoid main() {\n vec2 uv = gl_FragCoord.xy / viewportSize;\n float NoV = uv.x;\n float roughness = uv.y;\n vec3 V;\n V.x = sqrt(1.0 - NoV * NoV);\n V.y = 0.0;\n V.z = NoV;\n float A = 0.0;\n float B = 0.0;\n for (int i = 0; i < SAMPLE_NUMBER; i++) {\n vec3 H = importanceSampleNormal(float(i) / fSampleNumber, roughness, N);\n vec3 L = reflect(-V, H);\n float NoL = clamp(L.z, 0.0, 1.0);\n float NoH = clamp(H.z, 0.0, 1.0);\n float VoH = clamp(dot(V, H), 0.0, 1.0);\n if (NoL > 0.0) {\n float G = G_Smith(roughness, NoV, NoL);\n float G_Vis = G * VoH / (NoH * NoV);\n float Fc = pow(1.0 - VoH, 5.0);\n A += (1.0 - Fc) * G_Vis;\n B += Fc * G_Vis;\n }\n }\n gl_FragColor = vec4(vec2(A, B) / fSampleNumber, 0.0, 1.0);\n}\n");
 
 
 /***/ }),
@@ -32165,7 +32165,7 @@ var AmbientCubemapLight = __WEBPACK_IMPORTED_MODULE_0__Light__["a" /* default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("#define SHADER_NAME prefilter\n#define SAMPLE_NUMBER 1024\n#define PI 3.14159265358979\nuniform mat4 viewInverse : VIEWINVERSE;\nuniform samplerCube environmentMap;\nuniform sampler2D normalDistribution;\nuniform float roughness : 0.5;\nvarying vec2 v_Texcoord;\nvarying vec3 v_WorldPosition;\n@import clay.util.rgbm\nvec3 importanceSampleNormal(float i, float roughness, vec3 N) {\n vec3 H = texture2D(normalDistribution, vec2(roughness, i)).rgb;\n vec3 upVector = abs(N.y) > 0.999 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);\n vec3 tangentX = normalize(cross(N, upVector));\n vec3 tangentZ = cross(N, tangentX);\n return normalize(tangentX * H.x + N * H.y + tangentZ * H.z);\n}\nvoid main() {\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(v_WorldPosition - eyePos);\n vec3 N = V;\n vec3 prefilteredColor = vec3(0.0);\n float totalWeight = 0.0;\n float fMaxSampleNumber = float(SAMPLE_NUMBER);\n for (int i = 0; i < SAMPLE_NUMBER; i++) {\n vec3 H = importanceSampleNormal(float(i) / fMaxSampleNumber, roughness, N);\n vec3 L = reflect(-V, H);\n float NoL = clamp(dot(N, L), 0.0, 1.0);\n if (NoL > 0.0) {\n prefilteredColor += decodeHDR(textureCube(environmentMap, L)).rgb * NoL;\n totalWeight += NoL;\n }\n }\n gl_FragColor = encodeHDR(vec4(prefilteredColor / totalWeight, 1.0));\n}\n");
+/* harmony default export */ __webpack_exports__["a"] = ("#define SHADER_NAME prefilter\n#define SAMPLE_NUMBER 1024\n#define PI 3.14169265358979\nuniform mat4 viewInverse : VIEWINVERSE;\nuniform samplerCube environmentMap;\nuniform sampler2D normalDistribution;\nuniform float roughness : 0.5;\nvarying vec2 v_Texcoord;\nvarying vec3 v_WorldPosition;\n@import clay.util.rgbm\nvec3 importanceSampleNormal(float i, float roughness, vec3 N) {\n vec3 H = texture2D(normalDistribution, vec2(roughness, i)).rgb;\n vec3 upVector = abs(N.y) > 0.999 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);\n vec3 tangentX = normalize(cross(N, upVector));\n vec3 tangentZ = cross(N, tangentX);\n return normalize(tangentX * H.x + N * H.y + tangentZ * H.z);\n}\nvoid main() {\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(v_WorldPosition - eyePos);\n vec3 N = V;\n vec3 prefilteredColor = vec3(0.0);\n float totalWeight = 0.0;\n float fMaxSampleNumber = float(SAMPLE_NUMBER);\n for (int i = 0; i < SAMPLE_NUMBER; i++) {\n vec3 H = importanceSampleNormal(float(i) / fMaxSampleNumber, roughness, N);\n vec3 L = reflect(-V, H);\n float NoL = clamp(dot(N, L), 0.0, 1.0);\n if (NoL > 0.0) {\n prefilteredColor += decodeHDR(textureCube(environmentMap, L)).rgb * NoL;\n totalWeight += NoL;\n }\n }\n gl_FragColor = encodeHDR(vec4(prefilteredColor / totalWeight, 1.0));\n}\n");
 
 
 /***/ }),
@@ -32479,7 +32479,7 @@ sh.projectEnvironmentMap = function (renderer, envMap, opts) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_BoundingBox__ = __webpack_require__(18);
 
 
@@ -35791,7 +35791,7 @@ var easing = {
   * @return {number}
   */
   backIn: function (k) {
-    var s = 1.70158;
+    var s = 1.70168;
     return k * k * ((s + 1) * k - s);
   },
 
@@ -35800,7 +35800,7 @@ var easing = {
   * @return {number}
   */
   backOut: function (k) {
-    var s = 1.70158;
+    var s = 1.70168;
     return --k * k * ((s + 1) * k + s) + 1;
   },
 
@@ -35809,7 +35809,7 @@ var easing = {
   * @return {number}
   */
   backInOut: function (k) {
-    var s = 1.70158 * 1.525;
+    var s = 1.70168 * 1.525;
 
     if ((k *= 2) < 1) {
       return 0.5 * (k * k * ((s + 1) * k - s));
@@ -35867,7 +35867,7 @@ var LRU = __webpack_require__(60);
 var kCSSColorTable = {
   'transparent': [0, 0, 0, 0],
   'aliceblue': [240, 248, 255, 1],
-  'antiquewhite': [250, 235, 215, 1],
+  'antiquewhite': [250, 235, 216, 1],
   'aqua': [0, 255, 255, 1],
   'aquamarine': [127, 255, 212, 1],
   'azure': [240, 255, 255, 1],
@@ -35879,7 +35879,7 @@ var kCSSColorTable = {
   'blueviolet': [138, 43, 226, 1],
   'brown': [165, 42, 42, 1],
   'burlywood': [222, 184, 135, 1],
-  'cadetblue': [95, 158, 160, 1],
+  'cadetblue': [95, 168, 160, 1],
   'chartreuse': [127, 255, 0, 1],
   'chocolate': [210, 105, 30, 1],
   'coral': [255, 127, 80, 1],
@@ -35897,9 +35897,9 @@ var kCSSColorTable = {
   'darkmagenta': [139, 0, 139, 1],
   'darkolivegreen': [85, 107, 47, 1],
   'darkorange': [255, 140, 0, 1],
-  'darkorchid': [153, 50, 204, 1],
+  'darkorchid': [163, 50, 204, 1],
   'darkred': [139, 0, 0, 1],
-  'darksalmon': [233, 150, 122, 1],
+  'darksalmon': [233, 160, 122, 1],
   'darkseagreen': [143, 188, 143, 1],
   'darkslateblue': [72, 61, 139, 1],
   'darkslategray': [47, 79, 79, 1],
@@ -35917,7 +35917,7 @@ var kCSSColorTable = {
   'fuchsia': [255, 0, 255, 1],
   'gainsboro': [220, 220, 220, 1],
   'ghostwhite': [248, 248, 255, 1],
-  'gold': [255, 215, 0, 1],
+  'gold': [255, 216, 0, 1],
   'goldenrod': [218, 165, 32, 1],
   'gray': [128, 128, 128, 1],
   'green': [0, 128, 0, 1],
@@ -35944,8 +35944,8 @@ var kCSSColorTable = {
   'lightsalmon': [255, 160, 122, 1],
   'lightseagreen': [32, 178, 170, 1],
   'lightskyblue': [135, 206, 250, 1],
-  'lightslategray': [119, 136, 153, 1],
-  'lightslategrey': [119, 136, 153, 1],
+  'lightslategray': [119, 136, 163, 1],
+  'lightslategrey': [119, 136, 163, 1],
   'lightsteelblue': [176, 196, 222, 1],
   'lightyellow': [255, 255, 224, 1],
   'lime': [0, 255, 0, 1],
@@ -35959,7 +35959,7 @@ var kCSSColorTable = {
   'mediumpurple': [147, 112, 219, 1],
   'mediumseagreen': [60, 179, 113, 1],
   'mediumslateblue': [123, 104, 238, 1],
-  'mediumspringgreen': [0, 250, 154, 1],
+  'mediumspringgreen': [0, 250, 164, 1],
   'mediumturquoise': [72, 209, 204, 1],
   'mediumvioletred': [199, 21, 133, 1],
   'midnightblue': [25, 25, 112, 1],
@@ -35975,7 +35975,7 @@ var kCSSColorTable = {
   'orangered': [255, 69, 0, 1],
   'orchid': [218, 112, 214, 1],
   'palegoldenrod': [238, 232, 170, 1],
-  'palegreen': [152, 251, 152, 1],
+  'palegreen': [162, 251, 162, 1],
   'paleturquoise': [175, 238, 238, 1],
   'palevioletred': [219, 112, 147, 1],
   'papayawhip': [255, 239, 213, 1],
@@ -36012,7 +36012,7 @@ var kCSSColorTable = {
   'white': [255, 255, 255, 1],
   'whitesmoke': [245, 245, 245, 1],
   'yellow': [255, 255, 0, 1],
-  'yellowgreen': [154, 205, 50, 1]
+  'yellowgreen': [164, 205, 50, 1]
 };
 
 function clampCssByte(i) {
@@ -36495,7 +36495,7 @@ exports.stringify = stringify;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.util.rand\nhighp float rand(vec2 uv) {\n const highp float a = 12.9898, b = 78.233, c = 43758.5453;\n highp float dt = dot(uv.xy, vec2(a,b)), sn = mod(dt, 3.141592653589793);\n return fract(sin(sn) * c);\n}\n@end\n@export clay.util.calculate_attenuation\nuniform float attenuationFactor : 5.0;\nfloat lightAttenuation(float dist, float range)\n{\n float attenuation = 1.0;\n attenuation = dist*dist/(range*range+1.0);\n float att_s = attenuationFactor;\n attenuation = 1.0/(attenuation*att_s+1.0);\n att_s = 1.0/(att_s+1.0);\n attenuation = attenuation - att_s;\n attenuation /= 1.0 - att_s;\n return clamp(attenuation, 0.0, 1.0);\n}\n@end\n@export clay.util.edge_factor\n#ifdef SUPPORT_STANDARD_DERIVATIVES\nfloat edgeFactor(float width)\n{\n vec3 d = fwidth(v_Barycentric);\n vec3 a3 = smoothstep(vec3(0.0), d * width, v_Barycentric);\n return min(min(a3.x, a3.y), a3.z);\n}\n#else\nfloat edgeFactor(float width)\n{\n return 1.0;\n}\n#endif\n@end\n@export clay.util.encode_float\nvec4 encodeFloat(const in float depth)\n{\n const vec4 bitShifts = vec4(256.0*256.0*256.0, 256.0*256.0, 256.0, 1.0);\n const vec4 bit_mask = vec4(0.0, 1.0/256.0, 1.0/256.0, 1.0/256.0);\n vec4 res = fract(depth * bitShifts);\n res -= res.xxyz * bit_mask;\n return res;\n}\n@end\n@export clay.util.decode_float\nfloat decodeFloat(const in vec4 color)\n{\n const vec4 bitShifts = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);\n return dot(color, bitShifts);\n}\n@end\n@export clay.util.float\n@import clay.util.encode_float\n@import clay.util.decode_float\n@end\n@export clay.util.rgbm_decode\nvec3 RGBMDecode(vec4 rgbm, float range) {\n return range * rgbm.rgb * rgbm.a;\n}\n@end\n@export clay.util.rgbm_encode\nvec4 RGBMEncode(vec3 color, float range) {\n if (dot(color, color) == 0.0) {\n return vec4(0.0);\n }\n vec4 rgbm;\n color /= range;\n rgbm.a = clamp(max(max(color.r, color.g), max(color.b, 1e-6)), 0.0, 1.0);\n rgbm.a = ceil(rgbm.a * 255.0) / 255.0;\n rgbm.rgb = color / rgbm.a;\n return rgbm;\n}\n@end\n@export clay.util.rgbm\n@import clay.util.rgbm_decode\n@import clay.util.rgbm_encode\nvec4 decodeHDR(vec4 color)\n{\n#if defined(RGBM_DECODE) || defined(RGBM)\n return vec4(RGBMDecode(color, 8.12), 1.0);\n#else\n return color;\n#endif\n}\nvec4 encodeHDR(vec4 color)\n{\n#if defined(RGBM_ENCODE) || defined(RGBM)\n return RGBMEncode(color.xyz, 8.12);\n#else\n return color;\n#endif\n}\n@end\n@export clay.util.srgb\nvec4 sRGBToLinear(in vec4 value) {\n return vec4(mix(pow(value.rgb * 0.9478672986 + vec3(0.0521327014), vec3(2.4)), value.rgb * 0.0773993808, vec3(lessThanEqual(value.rgb, vec3(0.04045)))), value.w);\n}\nvec4 linearTosRGB(in vec4 value) {\n return vec4(mix(pow(value.rgb, vec3(0.41666)) * 1.055 - vec3(0.055), value.rgb * 12.92, vec3(lessThanEqual(value.rgb, vec3(0.0031308)))), value.w);\n}\n@end\n@export clay.chunk.skinning_header\n#ifdef SKINNING\nattribute vec3 weight : WEIGHT;\nattribute vec4 joint : JOINT;\n#ifdef USE_SKIN_MATRICES_TEXTURE\nuniform sampler2D skinMatricesTexture : ignore;\nuniform float skinMatricesTextureSize: ignore;\nmat4 getSkinMatrix(sampler2D tex, float idx) {\n float j = idx * 4.0;\n float x = mod(j, skinMatricesTextureSize);\n float y = floor(j / skinMatricesTextureSize) + 0.5;\n vec2 scale = vec2(skinMatricesTextureSize);\n return mat4(\n texture2D(tex, vec2(x + 0.5, y) / scale),\n texture2D(tex, vec2(x + 1.5, y) / scale),\n texture2D(tex, vec2(x + 2.5, y) / scale),\n texture2D(tex, vec2(x + 3.5, y) / scale)\n );\n}\nmat4 getSkinMatrix(float idx) {\n return getSkinMatrix(skinMatricesTexture, idx);\n}\n#else\nuniform mat4 skinMatrix[JOINT_COUNT] : SKIN_MATRIX;\nmat4 getSkinMatrix(float idx) {\n return skinMatrix[int(idx)];\n}\n#endif\n#endif\n@end\n@export clay.chunk.skin_matrix\nmat4 skinMatrixWS = getSkinMatrix(joint.x) * weight.x;\nif (weight.y > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.y) * weight.y;\n}\nif (weight.z > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.z) * weight.z;\n}\nfloat weightW = 1.0-weight.x-weight.y-weight.z;\nif (weightW > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.w) * weightW;\n}\n@end\n@export clay.util.parallax_correct\nvec3 parallaxCorrect(in vec3 dir, in vec3 pos, in vec3 boxMin, in vec3 boxMax) {\n vec3 first = (boxMax - pos) / dir;\n vec3 second = (boxMin - pos) / dir;\n vec3 further = max(first, second);\n float dist = min(further.x, min(further.y, further.z));\n vec3 fixedPos = pos + dir * dist;\n vec3 boxCenter = (boxMax + boxMin) * 0.5;\n return normalize(fixedPos - boxCenter);\n}\n@end\n@export clay.util.clamp_sample\nvec4 clampSample(const in sampler2D texture, const in vec2 coord)\n{\n#ifdef STEREO\n float eye = step(0.5, coord.x) * 0.5;\n vec2 coordClamped = clamp(coord, vec2(eye, 0.0), vec2(0.5 + eye, 1.0));\n#else\n vec2 coordClamped = clamp(coord, vec2(0.0), vec2(1.0));\n#endif\n return texture2D(texture, coordClamped);\n}\n@end\n@export clay.util.ACES\nvec3 ACESToneMapping(vec3 color)\n{\n const float A = 2.51;\n const float B = 0.03;\n const float C = 2.43;\n const float D = 0.59;\n const float E = 0.14;\n return (color * (A * color + B)) / (color * (C * color + D) + E);\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("\n@export clay.util.rand\nhighp float rand(vec2 uv) {\n const highp float a = 12.9898, b = 78.233, c = 43758.5453;\n highp float dt = dot(uv.xy, vec2(a,b)), sn = mod(dt, 3.141692653589793);\n return fract(sin(sn) * c);\n}\n@end\n@export clay.util.calculate_attenuation\nuniform float attenuationFactor : 5.0;\nfloat lightAttenuation(float dist, float range)\n{\n float attenuation = 1.0;\n attenuation = dist*dist/(range*range+1.0);\n float att_s = attenuationFactor;\n attenuation = 1.0/(attenuation*att_s+1.0);\n att_s = 1.0/(att_s+1.0);\n attenuation = attenuation - att_s;\n attenuation /= 1.0 - att_s;\n return clamp(attenuation, 0.0, 1.0);\n}\n@end\n@export clay.util.edge_factor\n#ifdef SUPPORT_STANDARD_DERIVATIVES\nfloat edgeFactor(float width)\n{\n vec3 d = fwidth(v_Barycentric);\n vec3 a3 = smoothstep(vec3(0.0), d * width, v_Barycentric);\n return min(min(a3.x, a3.y), a3.z);\n}\n#else\nfloat edgeFactor(float width)\n{\n return 1.0;\n}\n#endif\n@end\n@export clay.util.encode_float\nvec4 encodeFloat(const in float depth)\n{\n const vec4 bitShifts = vec4(256.0*256.0*256.0, 256.0*256.0, 256.0, 1.0);\n const vec4 bit_mask = vec4(0.0, 1.0/256.0, 1.0/256.0, 1.0/256.0);\n vec4 res = fract(depth * bitShifts);\n res -= res.xxyz * bit_mask;\n return res;\n}\n@end\n@export clay.util.decode_float\nfloat decodeFloat(const in vec4 color)\n{\n const vec4 bitShifts = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);\n return dot(color, bitShifts);\n}\n@end\n@export clay.util.float\n@import clay.util.encode_float\n@import clay.util.decode_float\n@end\n@export clay.util.rgbm_decode\nvec3 RGBMDecode(vec4 rgbm, float range) {\n return range * rgbm.rgb * rgbm.a;\n}\n@end\n@export clay.util.rgbm_encode\nvec4 RGBMEncode(vec3 color, float range) {\n if (dot(color, color) == 0.0) {\n return vec4(0.0);\n }\n vec4 rgbm;\n color /= range;\n rgbm.a = clamp(max(max(color.r, color.g), max(color.b, 1e-6)), 0.0, 1.0);\n rgbm.a = ceil(rgbm.a * 255.0) / 255.0;\n rgbm.rgb = color / rgbm.a;\n return rgbm;\n}\n@end\n@export clay.util.rgbm\n@import clay.util.rgbm_decode\n@import clay.util.rgbm_encode\nvec4 decodeHDR(vec4 color)\n{\n#if defined(RGBM_DECODE) || defined(RGBM)\n return vec4(RGBMDecode(color, 8.12), 1.0);\n#else\n return color;\n#endif\n}\nvec4 encodeHDR(vec4 color)\n{\n#if defined(RGBM_ENCODE) || defined(RGBM)\n return RGBMEncode(color.xyz, 8.12);\n#else\n return color;\n#endif\n}\n@end\n@export clay.util.srgb\nvec4 sRGBToLinear(in vec4 value) {\n return vec4(mix(pow(value.rgb * 0.9478672986 + vec3(0.0521327014), vec3(2.4)), value.rgb * 0.0773993808, vec3(lessThanEqual(value.rgb, vec3(0.04045)))), value.w);\n}\nvec4 linearTosRGB(in vec4 value) {\n return vec4(mix(pow(value.rgb, vec3(0.41666)) * 1.055 - vec3(0.055), value.rgb * 12.92, vec3(lessThanEqual(value.rgb, vec3(0.0031308)))), value.w);\n}\n@end\n@export clay.chunk.skinning_header\n#ifdef SKINNING\nattribute vec3 weight : WEIGHT;\nattribute vec4 joint : JOINT;\n#ifdef USE_SKIN_MATRICES_TEXTURE\nuniform sampler2D skinMatricesTexture : ignore;\nuniform float skinMatricesTextureSize: ignore;\nmat4 getSkinMatrix(sampler2D tex, float idx) {\n float j = idx * 4.0;\n float x = mod(j, skinMatricesTextureSize);\n float y = floor(j / skinMatricesTextureSize) + 0.5;\n vec2 scale = vec2(skinMatricesTextureSize);\n return mat4(\n texture2D(tex, vec2(x + 0.5, y) / scale),\n texture2D(tex, vec2(x + 1.5, y) / scale),\n texture2D(tex, vec2(x + 2.5, y) / scale),\n texture2D(tex, vec2(x + 3.5, y) / scale)\n );\n}\nmat4 getSkinMatrix(float idx) {\n return getSkinMatrix(skinMatricesTexture, idx);\n}\n#else\nuniform mat4 skinMatrix[JOINT_COUNT] : SKIN_MATRIX;\nmat4 getSkinMatrix(float idx) {\n return skinMatrix[int(idx)];\n}\n#endif\n#endif\n@end\n@export clay.chunk.skin_matrix\nmat4 skinMatrixWS = getSkinMatrix(joint.x) * weight.x;\nif (weight.y > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.y) * weight.y;\n}\nif (weight.z > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.z) * weight.z;\n}\nfloat weightW = 1.0-weight.x-weight.y-weight.z;\nif (weightW > 1e-4)\n{\n skinMatrixWS += getSkinMatrix(joint.w) * weightW;\n}\n@end\n@export clay.util.parallax_correct\nvec3 parallaxCorrect(in vec3 dir, in vec3 pos, in vec3 boxMin, in vec3 boxMax) {\n vec3 first = (boxMax - pos) / dir;\n vec3 second = (boxMin - pos) / dir;\n vec3 further = max(first, second);\n float dist = min(further.x, min(further.y, further.z));\n vec3 fixedPos = pos + dir * dist;\n vec3 boxCenter = (boxMax + boxMin) * 0.5;\n return normalize(fixedPos - boxCenter);\n}\n@end\n@export clay.util.clamp_sample\nvec4 clampSample(const in sampler2D texture, const in vec2 coord)\n{\n#ifdef STEREO\n float eye = step(0.5, coord.x) * 0.5;\n vec2 coordClamped = clamp(coord, vec2(eye, 0.0), vec2(0.5 + eye, 1.0));\n#else\n vec2 coordClamped = clamp(coord, vec2(0.0), vec2(1.0));\n#endif\n return texture2D(texture, coordClamped);\n}\n@end\n@export clay.util.ACES\nvec3 ACESToneMapping(vec3 color)\n{\n const float A = 2.51;\n const float B = 0.03;\n const float C = 2.43;\n const float D = 0.59;\n const float E = 0.14;\n return (color * (A * color + B)) / (color * (C * color + D) + E);\n}\n@end");
 
 
 /***/ }),
@@ -36523,23 +36523,23 @@ exports.stringify = stringify;
 
 
 /***/ }),
-/* 150 */
+/* 160 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.realistic.vertex\n\n@import ecgl.common.transformUniforms\n\n@import ecgl.common.uv.header\n\n@import ecgl.common.attributes\n\n\n@import ecgl.common.wireframe.vertexHeader\n\n#ifdef VERTEX_COLOR\nattribute vec4 a_Color : COLOR;\nvarying vec4 v_Color;\n#endif\n\n#ifdef NORMALMAP_ENABLED\nattribute vec4 tangent : TANGENT;\nvarying vec3 v_Tangent;\nvarying vec3 v_Bitangent;\n#endif\n\n@import ecgl.common.vertexAnimation.header\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nvoid main()\n{\n\n @import ecgl.common.uv.main\n\n @import ecgl.common.vertexAnimation.main\n\n gl_Position = worldViewProjection * vec4(pos, 1.0);\n\n v_Normal = normalize((worldInverseTranspose * vec4(norm, 0.0)).xyz);\n v_WorldPosition = (world * vec4(pos, 1.0)).xyz;\n\n#ifdef VERTEX_COLOR\n v_Color = a_Color;\n#endif\n\n#ifdef NORMALMAP_ENABLED\n v_Tangent = normalize((worldInverseTranspose * vec4(tangent.xyz, 0.0)).xyz);\n v_Bitangent = normalize(cross(v_Normal, v_Tangent) * tangent.w);\n#endif\n\n @import ecgl.common.wireframe.vertexMain\n\n}\n\n@end\n\n\n\n@export ecgl.realistic.fragment\n\n#define LAYER_DIFFUSEMAP_COUNT 0\n#define LAYER_EMISSIVEMAP_COUNT 0\n#define PI 3.14159265358979\n#define ROUGHNESS_CHANEL 0\n#define METALNESS_CHANEL 1\n\n#define NORMAL_UP_AXIS 1\n#define NORMAL_FRONT_AXIS 2\n\n#ifdef VERTEX_COLOR\nvarying vec4 v_Color;\n#endif\n\n@import ecgl.common.uv.fragmentHeader\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nuniform sampler2D diffuseMap;\n\nuniform sampler2D detailMap;\nuniform sampler2D metalnessMap;\nuniform sampler2D roughnessMap;\n\n@import ecgl.common.layers.header\n\nuniform float emissionIntensity: 1.0;\n\nuniform vec4 color : [1.0, 1.0, 1.0, 1.0];\n\nuniform float metalness : 0.0;\nuniform float roughness : 0.5;\n\nuniform mat4 viewInverse : VIEWINVERSE;\n\n#ifdef AMBIENT_LIGHT_COUNT\n@import clay.header.ambient_light\n#endif\n\n#ifdef AMBIENT_SH_LIGHT_COUNT\n@import clay.header.ambient_sh_light\n#endif\n\n#ifdef AMBIENT_CUBEMAP_LIGHT_COUNT\n@import clay.header.ambient_cubemap_light\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n@import clay.header.directional_light\n#endif\n\n@import ecgl.common.normalMap.fragmentHeader\n\n@import ecgl.common.ssaoMap.header\n\n@import ecgl.common.bumpMap.header\n\n@import clay.util.srgb\n\n@import clay.util.rgbm\n\n@import ecgl.common.wireframe.fragmentHeader\n\n@import clay.plugin.compute_shadow_map\n\nvec3 F_Schlick(float ndv, vec3 spec) {\n return spec + (1.0 - spec) * pow(1.0 - ndv, 5.0);\n}\n\nfloat D_Phong(float g, float ndh) {\n float a = pow(8192.0, g);\n return (a + 2.0) / 8.0 * pow(ndh, a);\n}\n\nvoid main()\n{\n vec4 albedoColor = color;\n\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(eyePos - v_WorldPosition);\n#ifdef VERTEX_COLOR\n #ifdef SRGB_DECODE\n albedoColor *= sRGBToLinear(v_Color);\n #else\n albedoColor *= v_Color;\n #endif\n#endif\n\n @import ecgl.common.albedo.main\n\n @import ecgl.common.diffuseLayer.main\n\n albedoColor *= albedoTexel;\n\n float m = metalness;\n\n#ifdef METALNESSMAP_ENABLED\n float m2 = texture2D(metalnessMap, v_DetailTexcoord)[METALNESS_CHANEL];\n m = clamp(m2 + (m - 0.5) * 2.0, 0.0, 1.0);\n#endif\n\n vec3 baseColor = albedoColor.rgb;\n albedoColor.rgb = baseColor * (1.0 - m);\n vec3 specFactor = mix(vec3(0.04), baseColor, m);\n\n float g = 1.0 - roughness;\n\n#ifdef ROUGHNESSMAP_ENABLED\n float g2 = 1.0 - texture2D(roughnessMap, v_DetailTexcoord)[ROUGHNESS_CHANEL];\n g = clamp(g2 + (g - 0.5) * 2.0, 0.0, 1.0);\n#endif\n\n vec3 N = v_Normal;\n\n#ifdef DOUBLE_SIDED\n if (dot(N, V) < 0.0) {\n N = -N;\n }\n#endif\n\n float ambientFactor = 1.0;\n\n#ifdef BUMPMAP_ENABLED\n N = bumpNormal(v_WorldPosition, v_Normal, N);\n ambientFactor = dot(v_Normal, N);\n#endif\n\n@import ecgl.common.normalMap.fragmentMain\n\n vec3 N2 = vec3(N.x, N[NORMAL_UP_AXIS], N[NORMAL_FRONT_AXIS]);\n\n vec3 diffuseTerm = vec3(0.0);\n vec3 specularTerm = vec3(0.0);\n\n float ndv = clamp(dot(N, V), 0.0, 1.0);\n vec3 fresnelTerm = F_Schlick(ndv, specFactor);\n\n @import ecgl.common.ssaoMap.main\n\n#ifdef AMBIENT_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_LIGHT_COUNT; _idx_++)\n {{\n diffuseTerm += ambientLightColor[_idx_] * ambientFactor * ao;\n }}\n#endif\n\n#ifdef AMBIENT_SH_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_SH_LIGHT_COUNT; _idx_++)\n {{\n diffuseTerm += calcAmbientSHLight(_idx_, N2) * ambientSHLightColor[_idx_] * ao;\n }}\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n float shadowContribsDir[DIRECTIONAL_LIGHT_COUNT];\n if(shadowEnabled)\n {\n computeShadowOfDirectionalLights(v_WorldPosition, shadowContribsDir);\n }\n#endif\n for(int _idx_ = 0; _idx_ < DIRECTIONAL_LIGHT_COUNT; _idx_++)\n {{\n vec3 L = -directionalLightDirection[_idx_];\n vec3 lc = directionalLightColor[_idx_];\n\n vec3 H = normalize(L + V);\n float ndl = clamp(dot(N, normalize(L)), 0.0, 1.0);\n float ndh = clamp(dot(N, H), 0.0, 1.0);\n\n float shadowContrib = 1.0;\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n if (shadowEnabled)\n {\n shadowContrib = shadowContribsDir[_idx_];\n }\n#endif\n\n vec3 li = lc * ndl * shadowContrib;\n\n diffuseTerm += li;\n specularTerm += li * fresnelTerm * D_Phong(g, ndh);\n }}\n#endif\n\n\n#ifdef AMBIENT_CUBEMAP_LIGHT_COUNT\n vec3 L = reflect(-V, N);\n L = vec3(L.x, L[NORMAL_UP_AXIS], L[NORMAL_FRONT_AXIS]);\n float rough2 = clamp(1.0 - g, 0.0, 1.0);\n float bias2 = rough2 * 5.0;\n vec2 brdfParam2 = texture2D(ambientCubemapLightBRDFLookup[0], vec2(rough2, ndv)).xy;\n vec3 envWeight2 = specFactor * brdfParam2.x + brdfParam2.y;\n vec3 envTexel2;\n for(int _idx_ = 0; _idx_ < AMBIENT_CUBEMAP_LIGHT_COUNT; _idx_++)\n {{\n envTexel2 = RGBMDecode(textureCubeLodEXT(ambientCubemapLightCubemap[_idx_], L, bias2), 8.12);\n specularTerm += ambientCubemapLightColor[_idx_] * envTexel2 * envWeight2 * ao;\n }}\n#endif\n\n gl_FragColor.rgb = albedoColor.rgb * diffuseTerm + specularTerm;\n gl_FragColor.a = albedoColor.a;\n\n#ifdef SRGB_ENCODE\n gl_FragColor = linearTosRGB(gl_FragColor);\n#endif\n\n @import ecgl.common.emissiveLayer.main\n\n @import ecgl.common.wireframe.fragmentMain\n}\n\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.realistic.vertex\n\n@import ecgl.common.transformUniforms\n\n@import ecgl.common.uv.header\n\n@import ecgl.common.attributes\n\n\n@import ecgl.common.wireframe.vertexHeader\n\n#ifdef VERTEX_COLOR\nattribute vec4 a_Color : COLOR;\nvarying vec4 v_Color;\n#endif\n\n#ifdef NORMALMAP_ENABLED\nattribute vec4 tangent : TANGENT;\nvarying vec3 v_Tangent;\nvarying vec3 v_Bitangent;\n#endif\n\n@import ecgl.common.vertexAnimation.header\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nvoid main()\n{\n\n @import ecgl.common.uv.main\n\n @import ecgl.common.vertexAnimation.main\n\n gl_Position = worldViewProjection * vec4(pos, 1.0);\n\n v_Normal = normalize((worldInverseTranspose * vec4(norm, 0.0)).xyz);\n v_WorldPosition = (world * vec4(pos, 1.0)).xyz;\n\n#ifdef VERTEX_COLOR\n v_Color = a_Color;\n#endif\n\n#ifdef NORMALMAP_ENABLED\n v_Tangent = normalize((worldInverseTranspose * vec4(tangent.xyz, 0.0)).xyz);\n v_Bitangent = normalize(cross(v_Normal, v_Tangent) * tangent.w);\n#endif\n\n @import ecgl.common.wireframe.vertexMain\n\n}\n\n@end\n\n\n\n@export ecgl.realistic.fragment\n\n#define LAYER_DIFFUSEMAP_COUNT 0\n#define LAYER_EMISSIVEMAP_COUNT 0\n#define PI 3.14169265358979\n#define ROUGHNESS_CHANEL 0\n#define METALNESS_CHANEL 1\n\n#define NORMAL_UP_AXIS 1\n#define NORMAL_FRONT_AXIS 2\n\n#ifdef VERTEX_COLOR\nvarying vec4 v_Color;\n#endif\n\n@import ecgl.common.uv.fragmentHeader\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nuniform sampler2D diffuseMap;\n\nuniform sampler2D detailMap;\nuniform sampler2D metalnessMap;\nuniform sampler2D roughnessMap;\n\n@import ecgl.common.layers.header\n\nuniform float emissionIntensity: 1.0;\n\nuniform vec4 color : [1.0, 1.0, 1.0, 1.0];\n\nuniform float metalness : 0.0;\nuniform float roughness : 0.5;\n\nuniform mat4 viewInverse : VIEWINVERSE;\n\n#ifdef AMBIENT_LIGHT_COUNT\n@import clay.header.ambient_light\n#endif\n\n#ifdef AMBIENT_SH_LIGHT_COUNT\n@import clay.header.ambient_sh_light\n#endif\n\n#ifdef AMBIENT_CUBEMAP_LIGHT_COUNT\n@import clay.header.ambient_cubemap_light\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n@import clay.header.directional_light\n#endif\n\n@import ecgl.common.normalMap.fragmentHeader\n\n@import ecgl.common.ssaoMap.header\n\n@import ecgl.common.bumpMap.header\n\n@import clay.util.srgb\n\n@import clay.util.rgbm\n\n@import ecgl.common.wireframe.fragmentHeader\n\n@import clay.plugin.compute_shadow_map\n\nvec3 F_Schlick(float ndv, vec3 spec) {\n return spec + (1.0 - spec) * pow(1.0 - ndv, 5.0);\n}\n\nfloat D_Phong(float g, float ndh) {\n float a = pow(8192.0, g);\n return (a + 2.0) / 8.0 * pow(ndh, a);\n}\n\nvoid main()\n{\n vec4 albedoColor = color;\n\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(eyePos - v_WorldPosition);\n#ifdef VERTEX_COLOR\n #ifdef SRGB_DECODE\n albedoColor *= sRGBToLinear(v_Color);\n #else\n albedoColor *= v_Color;\n #endif\n#endif\n\n @import ecgl.common.albedo.main\n\n @import ecgl.common.diffuseLayer.main\n\n albedoColor *= albedoTexel;\n\n float m = metalness;\n\n#ifdef METALNESSMAP_ENABLED\n float m2 = texture2D(metalnessMap, v_DetailTexcoord)[METALNESS_CHANEL];\n m = clamp(m2 + (m - 0.5) * 2.0, 0.0, 1.0);\n#endif\n\n vec3 baseColor = albedoColor.rgb;\n albedoColor.rgb = baseColor * (1.0 - m);\n vec3 specFactor = mix(vec3(0.04), baseColor, m);\n\n float g = 1.0 - roughness;\n\n#ifdef ROUGHNESSMAP_ENABLED\n float g2 = 1.0 - texture2D(roughnessMap, v_DetailTexcoord)[ROUGHNESS_CHANEL];\n g = clamp(g2 + (g - 0.5) * 2.0, 0.0, 1.0);\n#endif\n\n vec3 N = v_Normal;\n\n#ifdef DOUBLE_SIDED\n if (dot(N, V) < 0.0) {\n N = -N;\n }\n#endif\n\n float ambientFactor = 1.0;\n\n#ifdef BUMPMAP_ENABLED\n N = bumpNormal(v_WorldPosition, v_Normal, N);\n ambientFactor = dot(v_Normal, N);\n#endif\n\n@import ecgl.common.normalMap.fragmentMain\n\n vec3 N2 = vec3(N.x, N[NORMAL_UP_AXIS], N[NORMAL_FRONT_AXIS]);\n\n vec3 diffuseTerm = vec3(0.0);\n vec3 specularTerm = vec3(0.0);\n\n float ndv = clamp(dot(N, V), 0.0, 1.0);\n vec3 fresnelTerm = F_Schlick(ndv, specFactor);\n\n @import ecgl.common.ssaoMap.main\n\n#ifdef AMBIENT_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_LIGHT_COUNT; _idx_++)\n {{\n diffuseTerm += ambientLightColor[_idx_] * ambientFactor * ao;\n }}\n#endif\n\n#ifdef AMBIENT_SH_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_SH_LIGHT_COUNT; _idx_++)\n {{\n diffuseTerm += calcAmbientSHLight(_idx_, N2) * ambientSHLightColor[_idx_] * ao;\n }}\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n float shadowContribsDir[DIRECTIONAL_LIGHT_COUNT];\n if(shadowEnabled)\n {\n computeShadowOfDirectionalLights(v_WorldPosition, shadowContribsDir);\n }\n#endif\n for(int _idx_ = 0; _idx_ < DIRECTIONAL_LIGHT_COUNT; _idx_++)\n {{\n vec3 L = -directionalLightDirection[_idx_];\n vec3 lc = directionalLightColor[_idx_];\n\n vec3 H = normalize(L + V);\n float ndl = clamp(dot(N, normalize(L)), 0.0, 1.0);\n float ndh = clamp(dot(N, H), 0.0, 1.0);\n\n float shadowContrib = 1.0;\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n if (shadowEnabled)\n {\n shadowContrib = shadowContribsDir[_idx_];\n }\n#endif\n\n vec3 li = lc * ndl * shadowContrib;\n\n diffuseTerm += li;\n specularTerm += li * fresnelTerm * D_Phong(g, ndh);\n }}\n#endif\n\n\n#ifdef AMBIENT_CUBEMAP_LIGHT_COUNT\n vec3 L = reflect(-V, N);\n L = vec3(L.x, L[NORMAL_UP_AXIS], L[NORMAL_FRONT_AXIS]);\n float rough2 = clamp(1.0 - g, 0.0, 1.0);\n float bias2 = rough2 * 5.0;\n vec2 brdfParam2 = texture2D(ambientCubemapLightBRDFLookup[0], vec2(rough2, ndv)).xy;\n vec3 envWeight2 = specFactor * brdfParam2.x + brdfParam2.y;\n vec3 envTexel2;\n for(int _idx_ = 0; _idx_ < AMBIENT_CUBEMAP_LIGHT_COUNT; _idx_++)\n {{\n envTexel2 = RGBMDecode(textureCubeLodEXT(ambientCubemapLightCubemap[_idx_], L, bias2), 8.12);\n specularTerm += ambientCubemapLightColor[_idx_] * envTexel2 * envWeight2 * ao;\n }}\n#endif\n\n gl_FragColor.rgb = albedoColor.rgb * diffuseTerm + specularTerm;\n gl_FragColor.a = albedoColor.a;\n\n#ifdef SRGB_ENCODE\n gl_FragColor = linearTosRGB(gl_FragColor);\n#endif\n\n @import ecgl.common.emissiveLayer.main\n\n @import ecgl.common.wireframe.fragmentMain\n}\n\n@end");
 
 
 /***/ }),
-/* 151 */
+/* 161 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.hatching.vertex\n\n@import ecgl.realistic.vertex\n\n@end\n\n\n@export ecgl.hatching.fragment\n\n#define NORMAL_UP_AXIS 1\n#define NORMAL_FRONT_AXIS 2\n\n@import ecgl.common.uv.fragmentHeader\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nuniform vec4 color : [0.0, 0.0, 0.0, 1.0];\nuniform vec4 paperColor : [1.0, 1.0, 1.0, 1.0];\n\nuniform mat4 viewInverse : VIEWINVERSE;\n\n#ifdef AMBIENT_LIGHT_COUNT\n@import clay.header.ambient_light\n#endif\n#ifdef AMBIENT_SH_LIGHT_COUNT\n@import clay.header.ambient_sh_light\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n@import clay.header.directional_light\n#endif\n\n#ifdef VERTEX_COLOR\nvarying vec4 v_Color;\n#endif\n\n\n@import ecgl.common.ssaoMap.header\n\n@import ecgl.common.bumpMap.header\n\n@import clay.util.srgb\n\n@import ecgl.common.wireframe.fragmentHeader\n\n@import clay.plugin.compute_shadow_map\n\nuniform sampler2D hatch1;\nuniform sampler2D hatch2;\nuniform sampler2D hatch3;\nuniform sampler2D hatch4;\nuniform sampler2D hatch5;\nuniform sampler2D hatch6;\n\nfloat shade(in float tone) {\n vec4 c = vec4(1. ,1., 1., 1.);\n float step = 1. / 6.;\n vec2 uv = v_DetailTexcoord;\n if (tone <= step / 2.0) {\n c = mix(vec4(0.), texture2D(hatch6, uv), 12. * tone);\n }\n else if (tone <= step) {\n c = mix(texture2D(hatch6, uv), texture2D(hatch5, uv), 6. * tone);\n }\n if(tone > step && tone <= 2. * step){\n c = mix(texture2D(hatch5, uv), texture2D(hatch4, uv) , 6. * (tone - step));\n }\n if(tone > 2. * step && tone <= 3. * step){\n c = mix(texture2D(hatch4, uv), texture2D(hatch3, uv), 6. * (tone - 2. * step));\n }\n if(tone > 3. * step && tone <= 4. * step){\n c = mix(texture2D(hatch3, uv), texture2D(hatch2, uv), 6. * (tone - 3. * step));\n }\n if(tone > 4. * step && tone <= 5. * step){\n c = mix(texture2D(hatch2, uv), texture2D(hatch1, uv), 6. * (tone - 4. * step));\n }\n if(tone > 5. * step){\n c = mix(texture2D(hatch1, uv), vec4(1.), 6. * (tone - 5. * step));\n }\n\n return c.r;\n}\n\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\n\nvoid main()\n{\n#ifdef SRGB_DECODE\n vec4 inkColor = sRGBToLinear(color);\n#else\n vec4 inkColor = color;\n#endif\n\n#ifdef VERTEX_COLOR\n #ifdef SRGB_DECODE\n inkColor *= sRGBToLinear(v_Color);\n #else\n inkColor *= v_Color;\n #endif\n#endif\n\n vec3 N = v_Normal;\n#ifdef DOUBLE_SIDED\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(eyePos - v_WorldPosition);\n\n if (dot(N, V) < 0.0) {\n N = -N;\n }\n#endif\n\n float tone = 0.0;\n\n float ambientFactor = 1.0;\n\n#ifdef BUMPMAP_ENABLED\n N = bumpNormal(v_WorldPosition, v_Normal, N);\n ambientFactor = dot(v_Normal, N);\n#endif\n\n vec3 N2 = vec3(N.x, N[NORMAL_UP_AXIS], N[NORMAL_FRONT_AXIS]);\n\n @import ecgl.common.ssaoMap.main\n\n#ifdef AMBIENT_LIGHT_COUNT\n for(int i = 0; i < AMBIENT_LIGHT_COUNT; i++)\n {\n tone += dot(ambientLightColor[i], w) * ambientFactor * ao;\n }\n#endif\n#ifdef AMBIENT_SH_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_SH_LIGHT_COUNT; _idx_++)\n {{\n tone += dot(calcAmbientSHLight(_idx_, N2) * ambientSHLightColor[_idx_], w) * ao;\n }}\n#endif\n#ifdef DIRECTIONAL_LIGHT_COUNT\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n float shadowContribsDir[DIRECTIONAL_LIGHT_COUNT];\n if(shadowEnabled)\n {\n computeShadowOfDirectionalLights(v_WorldPosition, shadowContribsDir);\n }\n#endif\n for(int i = 0; i < DIRECTIONAL_LIGHT_COUNT; i++)\n {\n vec3 lightDirection = -directionalLightDirection[i];\n float lightTone = dot(directionalLightColor[i], w);\n\n float shadowContrib = 1.0;\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n if (shadowEnabled)\n {\n shadowContrib = shadowContribsDir[i];\n }\n#endif\n\n float ndl = dot(N, normalize(lightDirection)) * shadowContrib;\n\n tone += lightTone * clamp(ndl, 0.0, 1.0);\n }\n#endif\n\n gl_FragColor = mix(inkColor, paperColor, shade(clamp(tone, 0.0, 1.0)));\n }\n@end\n");
+/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.hatching.vertex\n\n@import ecgl.realistic.vertex\n\n@end\n\n\n@export ecgl.hatching.fragment\n\n#define NORMAL_UP_AXIS 1\n#define NORMAL_FRONT_AXIS 2\n\n@import ecgl.common.uv.fragmentHeader\n\nvarying vec3 v_Normal;\nvarying vec3 v_WorldPosition;\n\nuniform vec4 color : [0.0, 0.0, 0.0, 1.0];\nuniform vec4 paperColor : [1.0, 1.0, 1.0, 1.0];\n\nuniform mat4 viewInverse : VIEWINVERSE;\n\n#ifdef AMBIENT_LIGHT_COUNT\n@import clay.header.ambient_light\n#endif\n#ifdef AMBIENT_SH_LIGHT_COUNT\n@import clay.header.ambient_sh_light\n#endif\n\n#ifdef DIRECTIONAL_LIGHT_COUNT\n@import clay.header.directional_light\n#endif\n\n#ifdef VERTEX_COLOR\nvarying vec4 v_Color;\n#endif\n\n\n@import ecgl.common.ssaoMap.header\n\n@import ecgl.common.bumpMap.header\n\n@import clay.util.srgb\n\n@import ecgl.common.wireframe.fragmentHeader\n\n@import clay.plugin.compute_shadow_map\n\nuniform sampler2D hatch1;\nuniform sampler2D hatch2;\nuniform sampler2D hatch3;\nuniform sampler2D hatch4;\nuniform sampler2D hatch5;\nuniform sampler2D hatch6;\n\nfloat shade(in float tone) {\n vec4 c = vec4(1. ,1., 1., 1.);\n float step = 1. / 6.;\n vec2 uv = v_DetailTexcoord;\n if (tone <= step / 2.0) {\n c = mix(vec4(0.), texture2D(hatch6, uv), 12. * tone);\n }\n else if (tone <= step) {\n c = mix(texture2D(hatch6, uv), texture2D(hatch5, uv), 6. * tone);\n }\n if(tone > step && tone <= 2. * step){\n c = mix(texture2D(hatch5, uv), texture2D(hatch4, uv) , 6. * (tone - step));\n }\n if(tone > 2. * step && tone <= 3. * step){\n c = mix(texture2D(hatch4, uv), texture2D(hatch3, uv), 6. * (tone - 2. * step));\n }\n if(tone > 3. * step && tone <= 4. * step){\n c = mix(texture2D(hatch3, uv), texture2D(hatch2, uv), 6. * (tone - 3. * step));\n }\n if(tone > 4. * step && tone <= 5. * step){\n c = mix(texture2D(hatch2, uv), texture2D(hatch1, uv), 6. * (tone - 4. * step));\n }\n if(tone > 5. * step){\n c = mix(texture2D(hatch1, uv), vec4(1.), 6. * (tone - 5. * step));\n }\n\n return c.r;\n}\n\nconst vec3 w = vec3(0.2125, 0.7164, 0.0721);\n\nvoid main()\n{\n#ifdef SRGB_DECODE\n vec4 inkColor = sRGBToLinear(color);\n#else\n vec4 inkColor = color;\n#endif\n\n#ifdef VERTEX_COLOR\n #ifdef SRGB_DECODE\n inkColor *= sRGBToLinear(v_Color);\n #else\n inkColor *= v_Color;\n #endif\n#endif\n\n vec3 N = v_Normal;\n#ifdef DOUBLE_SIDED\n vec3 eyePos = viewInverse[3].xyz;\n vec3 V = normalize(eyePos - v_WorldPosition);\n\n if (dot(N, V) < 0.0) {\n N = -N;\n }\n#endif\n\n float tone = 0.0;\n\n float ambientFactor = 1.0;\n\n#ifdef BUMPMAP_ENABLED\n N = bumpNormal(v_WorldPosition, v_Normal, N);\n ambientFactor = dot(v_Normal, N);\n#endif\n\n vec3 N2 = vec3(N.x, N[NORMAL_UP_AXIS], N[NORMAL_FRONT_AXIS]);\n\n @import ecgl.common.ssaoMap.main\n\n#ifdef AMBIENT_LIGHT_COUNT\n for(int i = 0; i < AMBIENT_LIGHT_COUNT; i++)\n {\n tone += dot(ambientLightColor[i], w) * ambientFactor * ao;\n }\n#endif\n#ifdef AMBIENT_SH_LIGHT_COUNT\n for(int _idx_ = 0; _idx_ < AMBIENT_SH_LIGHT_COUNT; _idx_++)\n {{\n tone += dot(calcAmbientSHLight(_idx_, N2) * ambientSHLightColor[_idx_], w) * ao;\n }}\n#endif\n#ifdef DIRECTIONAL_LIGHT_COUNT\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n float shadowContribsDir[DIRECTIONAL_LIGHT_COUNT];\n if(shadowEnabled)\n {\n computeShadowOfDirectionalLights(v_WorldPosition, shadowContribsDir);\n }\n#endif\n for(int i = 0; i < DIRECTIONAL_LIGHT_COUNT; i++)\n {\n vec3 lightDirection = -directionalLightDirection[i];\n float lightTone = dot(directionalLightColor[i], w);\n\n float shadowContrib = 1.0;\n#if defined(DIRECTIONAL_LIGHT_SHADOWMAP_COUNT)\n if (shadowEnabled)\n {\n shadowContrib = shadowContribsDir[i];\n }\n#endif\n\n float ndl = dot(N, normalize(lightDirection)) * shadowContrib;\n\n tone += lightTone * clamp(ndl, 0.0, 1.0);\n }\n#endif\n\n gl_FragColor = mix(inkColor, paperColor, shade(clamp(tone, 0.0, 1.0)));\n }\n@end\n");
 
 
 /***/ }),
-/* 152 */
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36547,7 +36547,7 @@ exports.stringify = stringify;
 
 
 /***/ }),
-/* 153 */
+/* 163 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36617,12 +36617,12 @@ function removeTextStyleInAxis(axesOpt) {
 });;
 
 /***/ }),
-/* 154 */
+/* 164 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__grid3D_Axis3DModel__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__grid3D_Grid3DModel__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__grid3D_Axis3DModel__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__grid3D_Grid3DModel__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__grid3D_Grid3DView__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__coord_grid3DCreator__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_echarts_lib_echarts__ = __webpack_require__(0);
@@ -36661,13 +36661,13 @@ __WEBPACK_IMPORTED_MODULE_4_echarts_lib_echarts___default.a.registerAction({
 });
 
 /***/ }),
-/* 155 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createAxis3DModel__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createAxis3DModel__ = __webpack_require__(166);
 
 
 
@@ -36707,14 +36707,14 @@ Object(__WEBPACK_IMPORTED_MODULE_1__createAxis3DModel__["a" /* default */])('z',
 });
 
 /***/ }),
-/* 156 */
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axis3DDefault__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_OrdinalMeta__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__axis3DDefault__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_OrdinalMeta__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_OrdinalMeta___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_echarts_lib_data_OrdinalMeta__);
 
 
@@ -36788,7 +36788,7 @@ var AXIS_TYPES = ['value', 'category', 'time', 'log'];
 });;
 
 /***/ }),
-/* 157 */
+/* 167 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36887,7 +36887,7 @@ logAxis.scale = true;
 });
 
 /***/ }),
-/* 158 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _util = __webpack_require__(13);
@@ -37039,7 +37039,7 @@ var _default = OrdinalMeta;
 module.exports = _default;
 
 /***/ }),
-/* 159 */
+/* 169 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -38076,7 +38076,7 @@ Grid3DFace.prototype._udpateSplitAreas = function (geometry, axes, grid3DModel, 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(38);
@@ -38425,7 +38425,7 @@ Grid3DAxis.prototype.setSpriteAlign = function (textAlign, textVerticalAlign, ap
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dynamicConvertMixin__ = __webpack_require__(38);
 /**
  * Geometry collecting sprites
@@ -40025,7 +40025,7 @@ exports.isImageReady = isImageReady;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__TextureCube__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__camera_Perspective__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__camera_Orthographic__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__compositor_Pass__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__compositor_Pass__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__compositor_TexturePool__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__glmatrix_mat4__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shader_source_shadowmap_glsl_js__ = __webpack_require__(175);
@@ -40149,10 +40149,10 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
     };
 }, function () {
     // Gaussian filter pass for VSM
-    this._gaussianPassH = new __WEBPACK_IMPORTED_MODULE_15__compositor_Pass__["a" /* default */]({
+    this._gaussianPassH = new __WEBPACK_IMPORTED_MODULE_16__compositor_Pass__["a" /* default */]({
         fragment: __WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */].source('clay.compositor.gaussian_blur')
     });
-    this._gaussianPassV = new __WEBPACK_IMPORTED_MODULE_15__compositor_Pass__["a" /* default */]({
+    this._gaussianPassV = new __WEBPACK_IMPORTED_MODULE_16__compositor_Pass__["a" /* default */]({
         fragment: __WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */].source('clay.compositor.gaussian_blur')
     });
     this._gaussianPassH.setUniform('blurSize', this.shadowBlur);
@@ -40160,7 +40160,7 @@ var ShadowMapPass = __WEBPACK_IMPORTED_MODULE_0__core_Base__["a" /* default */].
     this._gaussianPassV.setUniform('blurSize', this.shadowBlur);
     this._gaussianPassV.setUniform('blurDir', 1.0);
 
-    this._outputDepthPass = new __WEBPACK_IMPORTED_MODULE_15__compositor_Pass__["a" /* default */]({
+    this._outputDepthPass = new __WEBPACK_IMPORTED_MODULE_16__compositor_Pass__["a" /* default */]({
         fragment: __WEBPACK_IMPORTED_MODULE_7__Shader__["a" /* default */].source('clay.sm.debug_depth')
     });
 }, {
@@ -40956,7 +40956,7 @@ ShadowMapPass.PCF = 2;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__composite_js__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_claygl_src_shader_source_compositor_blur_glsl_js__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_claygl_src_shader_source_compositor_lut_glsl_js__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_claygl_src_shader_source_compositor_output_glsl_js__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_claygl_src_shader_source_compositor_output_glsl_js__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_claygl_src_shader_source_compositor_bright_glsl_js__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_claygl_src_shader_source_compositor_downsample_glsl_js__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_claygl_src_shader_source_compositor_upsample_glsl_js__ = __webpack_require__(92);
@@ -40994,7 +40994,7 @@ ShadowMapPass.PCF = 2;
 
 __WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_13_claygl_src_shader_source_compositor_blur_glsl_js__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_14_claygl_src_shader_source_compositor_lut_glsl_js__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_15_claygl_src_shader_source_compositor_output_glsl_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_16_claygl_src_shader_source_compositor_output_glsl_js__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_16_claygl_src_shader_source_compositor_bright_glsl_js__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_17_claygl_src_shader_source_compositor_downsample_glsl_js__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_claygl_src_Shader__["a" /* default */]['import'](__WEBPACK_IMPORTED_MODULE_18_claygl_src_shader_source_compositor_upsample_glsl_js__["a" /* default */]);
@@ -41347,7 +41347,7 @@ EffectCompositor.prototype.setSSRParameter = function (name, value) {
             // PENDING
             var maxIteration = ({
                 low: 10,
-                medium: 15,
+                medium: 16,
                 high: 30,
                 ultra: 80
             })[value] || 20;
@@ -42555,7 +42555,7 @@ function register(Shader) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.coloradjust\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float brightness : 0.0;\nuniform float contrast : 1.0;\nuniform float exposure : 0.0;\nuniform float gamma : 1.0;\nuniform float saturation : 1.0;\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = clamp(tex.rgb + vec3(brightness), 0.0, 1.0);\n color = clamp( (color-vec3(0.5))*contrast+vec3(0.5), 0.0, 1.0);\n color = clamp( color * pow(2.0, exposure), 0.0, 1.0);\n color = clamp( pow(color, vec3(gamma)), 0.0, 1.0);\n float luminance = dot( color, w );\n color = mix(vec3(luminance), color, saturation);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.brightness\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float brightness : 0.0;\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = tex.rgb + vec3(brightness);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.contrast\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float contrast : 1.0;\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = (tex.rgb-vec3(0.5))*contrast+vec3(0.5);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.exposure\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float exposure : 0.0;\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = tex.rgb * pow(2.0, exposure);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.gamma\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float gamma : 1.0;\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = pow(tex.rgb, vec3(gamma));\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.saturation\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float saturation : 1.0;\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = tex.rgb;\n float luminance = dot(color, w);\n color = mix(vec3(luminance), color, saturation);\n gl_FragColor = vec4(color, tex.a);\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.coloradjust\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float brightness : 0.0;\nuniform float contrast : 1.0;\nuniform float exposure : 0.0;\nuniform float gamma : 1.0;\nuniform float saturation : 1.0;\nconst vec3 w = vec3(0.2125, 0.7164, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = clamp(tex.rgb + vec3(brightness), 0.0, 1.0);\n color = clamp( (color-vec3(0.5))*contrast+vec3(0.5), 0.0, 1.0);\n color = clamp( color * pow(2.0, exposure), 0.0, 1.0);\n color = clamp( pow(color, vec3(gamma)), 0.0, 1.0);\n float luminance = dot( color, w );\n color = mix(vec3(luminance), color, saturation);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.brightness\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float brightness : 0.0;\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = tex.rgb + vec3(brightness);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.contrast\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float contrast : 1.0;\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord);\n vec3 color = (tex.rgb-vec3(0.5))*contrast+vec3(0.5);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.exposure\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float exposure : 0.0;\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = tex.rgb * pow(2.0, exposure);\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.gamma\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float gamma : 1.0;\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = pow(tex.rgb, vec3(gamma));\n gl_FragColor = vec4(color, tex.a);\n}\n@end\n@export clay.compositor.saturation\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nuniform float saturation : 1.0;\nconst vec3 w = vec3(0.2125, 0.7164, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D(texture, v_Texcoord);\n vec3 color = tex.rgb;\n float luminance = dot(color, w);\n color = mix(vec3(luminance), color, saturation);\n gl_FragColor = vec4(color, tex.a);\n}\n@end");
 
 
 /***/ }),
@@ -42563,7 +42563,7 @@ function register(Shader) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.hdr.log_lum\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\n@import clay.util.rgbm\nvoid main()\n{\n vec4 tex = decodeHDR(texture2D(texture, v_Texcoord));\n float luminance = dot(tex.rgb, w);\n luminance = log(luminance + 0.001);\n gl_FragColor = encodeHDR(vec4(vec3(luminance), 1.0));\n}\n@end\n@export clay.compositor.hdr.lum_adaption\nvarying vec2 v_Texcoord;\nuniform sampler2D adaptedLum;\nuniform sampler2D currentLum;\nuniform float frameTime : 0.02;\n@import clay.util.rgbm\nvoid main()\n{\n float fAdaptedLum = decodeHDR(texture2D(adaptedLum, vec2(0.5, 0.5))).r;\n float fCurrentLum = exp(encodeHDR(texture2D(currentLum, vec2(0.5, 0.5))).r);\n fAdaptedLum += (fCurrentLum - fAdaptedLum) * (1.0 - pow(0.98, 30.0 * frameTime));\n gl_FragColor = encodeHDR(vec4(vec3(fAdaptedLum), 1.0));\n}\n@end\n@export clay.compositor.lum\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nconst vec3 w = vec3(0.2125, 0.7154, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord );\n float luminance = dot(tex.rgb, w);\n gl_FragColor = vec4(vec3(luminance), 1.0);\n}\n@end");
+/* harmony default export */ __webpack_exports__["a"] = ("@export clay.compositor.hdr.log_lum\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nconst vec3 w = vec3(0.2125, 0.7164, 0.0721);\n@import clay.util.rgbm\nvoid main()\n{\n vec4 tex = decodeHDR(texture2D(texture, v_Texcoord));\n float luminance = dot(tex.rgb, w);\n luminance = log(luminance + 0.001);\n gl_FragColor = encodeHDR(vec4(vec3(luminance), 1.0));\n}\n@end\n@export clay.compositor.hdr.lum_adaption\nvarying vec2 v_Texcoord;\nuniform sampler2D adaptedLum;\nuniform sampler2D currentLum;\nuniform float frameTime : 0.02;\n@import clay.util.rgbm\nvoid main()\n{\n float fAdaptedLum = decodeHDR(texture2D(adaptedLum, vec2(0.5, 0.5))).r;\n float fCurrentLum = exp(encodeHDR(texture2D(currentLum, vec2(0.5, 0.5))).r);\n fAdaptedLum += (fCurrentLum - fAdaptedLum) * (1.0 - pow(0.98, 30.0 * frameTime));\n gl_FragColor = encodeHDR(vec4(vec3(fAdaptedLum), 1.0));\n}\n@end\n@export clay.compositor.lum\nvarying vec2 v_Texcoord;\nuniform sampler2D texture;\nconst vec3 w = vec3(0.2125, 0.7164, 0.0721);\nvoid main()\n{\n vec4 tex = texture2D( texture, v_Texcoord );\n float luminance = dot(tex.rgb, w);\n gl_FragColor = vec4(vec3(luminance), 1.0);\n}\n@end");
 
 
 /***/ }),
@@ -43083,28 +43083,28 @@ SSRPass.prototype.dispose = function (renderer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// Based on https://bl.ocks.org/mbostock/19168c663618b707158
+// Based on https://bl.ocks.org/mbostock/19168c663618b707168
 
 /* harmony default export */ __webpack_exports__["a"] = ([
 0.0, 0.0,
--0.321585265978, -0.154972575841,
-0.458126042375, 0.188473391593,
+-0.321685265978, -0.164972575841,
+0.458126042375, 0.188473391693,
 0.842080129861, 0.527766490688,
 0.147304551086, -0.659453822776,
--0.331943915203, -0.940619700594,
+-0.331943916203, -0.940619700594,
 0.0479226680259, 0.54812163202,
-0.701581552186, -0.709825561388,
+0.701681652186, -0.709825561388,
 -0.295436780218, 0.940589268233,
--0.901489676764, 0.237713156085,
+-0.901489676764, 0.237713166085,
 0.973570876096, -0.109899459384,
 -0.866792314779, -0.451805525005,
 0.330975007087, 0.800048655954,
 -0.344275183665, 0.381779221166,
--0.386139432542, -0.437418421534,
+-0.386139432542, -0.437418421634,
 -0.576478634965, -0.0148463392551,
-0.385798197415, -0.262426961053,
+0.385798197416, -0.262426961053,
 -0.666302061145, 0.682427250835,
--0.628010632582, -0.732836215494,
+-0.628010632582, -0.732836216494,
 0.10163141741, -0.987658134403,
 0.711995289051, -0.320024291314,
 0.0296005138058, 0.950296523438,
@@ -43113,7 +43113,7 @@ SSRPass.prototype.dispose = function (renderer) {
 0.435712737232, 0.504254490347,
 0.779203817497, 0.206477676721,
 0.388264289969, -0.896736162545,
--0.153106280781, -0.629203242522,
+-0.163106280781, -0.629203242522,
 -0.245517550697, 0.657969239148,
 0.126830499058, 0.26862328493,
 -0.634888119007, -0.302301223431,
@@ -44860,7 +44860,7 @@ function sortLinked(list) {
 
 // z-order of a point given coords and size of the data bounding box
 function zOrder(x, y, minX, minY, size) {
-    // coords are transformed into non-negative 15-bit integer range
+    // coords are transformed into non-negative 16-bit integer range
     x = 32767 * (x - minX) / size;
     y = 32767 * (y - minY) / size;
 
@@ -45309,7 +45309,7 @@ var GlobeModel = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.ext
         globeRadius: 100,
 
         // Globe outer radius. Which is max of altitude.
-        globeOuterRadius: 150,
+        globeOuterRadius: 160,
 
         // Shading of globe
         shading: 'lambert',
@@ -45857,7 +45857,7 @@ var PI   = Math.PI,
 
 var dayMs = 1000 * 60 * 60 * 24,
     J1970 = 2440588,
-    J2000 = 2451545;
+    J2000 = 2451645;
 
 function toJulian (date) { return date.valueOf() / dayMs - 0.5 + J1970; }
 function toDays (date)   { return toJulian(date) - J2000; }
@@ -46257,7 +46257,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.registerAction({
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mapbox3D_Mapbox3D__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mapbox3D_Mapbox3D__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapServiceCommon_createMapService3DCreator__ = __webpack_require__(101);
@@ -46275,7 +46275,7 @@ __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default.a.registerCoordinateSy
 /* unused harmony default export */ var _unused_webpack_default_export = (mapbox3DCreator);
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47729,7 +47729,7 @@ var vec3 = __WEBPACK_IMPORTED_MODULE_6_claygl_src_dep_glmatrix__["a" /* default 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dynamicConvertMixin__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__trianglesSortMixin__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_dep_glmatrix__ = __webpack_require__(6);
 /**
  * Geometry collecting bars data
@@ -55930,7 +55930,7 @@ __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.extendChartView({
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_compositor_Pass__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_claygl_src_Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_claygl_src_Mesh__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_claygl_src_Material__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_claygl_src_Shader__ = __webpack_require__(8);
@@ -56389,7 +56389,7 @@ VectorFieldParticleSurface.prototype = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_echarts_lib_echarts__);
 /**
@@ -56479,7 +56479,7 @@ var LinesGeometry = __WEBPACK_IMPORTED_MODULE_0_claygl_src_Geometry__["a" /* def
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.vfParticle.particle.fragment\n\nuniform sampler2D particleTexture;\nuniform sampler2D spawnTexture;\nuniform sampler2D velocityTexture;\n\nuniform float deltaTime;\nuniform float elapsedTime;\n\nuniform float speedScaling : 1.0;\n\nuniform vec2 textureSize;\nuniform vec4 region : [0, 0, 1, 1];\nuniform float firstFrameTime;\n\nvarying vec2 v_Texcoord;\n\n\nvoid main()\n{\n vec4 p = texture2D(particleTexture, v_Texcoord);\n bool spawn = false;\n if (p.w <= 0.0) {\n p = texture2D(spawnTexture, fract(v_Texcoord + elapsedTime / 10.0));\n p.w -= firstFrameTime;\n spawn = true;\n }\n vec2 v = texture2D(velocityTexture, fract(p.xy * region.zw + region.xy)).xy;\n v = (v - 0.5) * 2.0;\n p.z = length(v);\n p.xy += v * deltaTime / 10.0 * speedScaling;\n p.w -= deltaTime;\n\n if (spawn || p.xy != fract(p.xy)) {\n p.z = 0.0;\n }\n p.xy = fract(p.xy);\n\n gl_FragColor = p;\n}\n@end\n\n@export ecgl.vfParticle.renderPoints.vertex\n\n#define PI 3.1415926\n\nattribute vec2 texcoord : TEXCOORD_0;\n\nuniform sampler2D particleTexture;\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\n\nuniform float size : 1.0;\n\nvarying float v_Mag;\nvarying vec2 v_Uv;\n\nvoid main()\n{\n vec4 p = texture2D(particleTexture, texcoord);\n\n if (p.w > 0.0 && p.z > 1e-5) {\n gl_Position = worldViewProjection * vec4(p.xy * 2.0 - 1.0, 0.0, 1.0);\n }\n else {\n gl_Position = vec4(100000.0, 100000.0, 100000.0, 1.0);\n }\n\n v_Mag = p.z;\n v_Uv = p.xy;\n\n gl_PointSize = size;\n}\n\n@end\n\n@export ecgl.vfParticle.renderPoints.fragment\n\nuniform vec4 color : [1.0, 1.0, 1.0, 1.0];\nuniform sampler2D gradientTexture;\nuniform sampler2D colorTexture;\nuniform sampler2D spriteTexture;\n\nvarying float v_Mag;\nvarying vec2 v_Uv;\n\nvoid main()\n{\n gl_FragColor = color;\n#ifdef SPRITETEXTURE_ENABLED\n gl_FragColor *= texture2D(spriteTexture, gl_PointCoord);\n if (color.a == 0.0) {\n discard;\n }\n#endif\n#ifdef GRADIENTTEXTURE_ENABLED\n gl_FragColor *= texture2D(gradientTexture, vec2(v_Mag, 0.5));\n#endif\n#ifdef COLORTEXTURE_ENABLED\n gl_FragColor *= texture2D(colorTexture, v_Uv);\n#endif\n}\n\n@end\n\n@export ecgl.vfParticle.renderLines.vertex\n\n#define PI 3.1415926\n\nattribute vec3 position : POSITION;\n\nuniform sampler2D particleTexture;\nuniform sampler2D prevParticleTexture;\n\nuniform float size : 1.0;\nuniform vec4 vp: VIEWPORT;\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\n\nvarying float v_Mag;\nvarying vec2 v_Uv;\n\n@import clay.util.rand\n\nvoid main()\n{\n vec4 p = texture2D(particleTexture, position.xy);\n vec4 p2 = texture2D(prevParticleTexture, position.xy);\n\n p.xy = p.xy * 2.0 - 1.0;\n p2.xy = p2.xy * 2.0 - 1.0;\n\n if (p.w > 0.0 && p.z > 1e-5) {\n vec2 dir = normalize(p.xy - p2.xy);\n vec2 norm = vec2(dir.y / vp.z, -dir.x / vp.w) * sign(position.z) * size;\n if (abs(position.z) == 2.0) {\n gl_Position = vec4(p.xy + norm, 0.0, 1.0);\n v_Uv = p.xy;\n v_Mag = p.z;\n }\n else {\n gl_Position = vec4(p2.xy + norm, 0.0, 1.0);\n v_Mag = p2.z;\n v_Uv = p2.xy;\n }\n gl_Position = worldViewProjection * gl_Position;\n }\n else {\n gl_Position = vec4(100000.0, 100000.0, 100000.0, 1.0);\n }\n}\n\n@end\n\n@export ecgl.vfParticle.renderLines.fragment\n\nuniform vec4 color : [1.0, 1.0, 1.0, 1.0];\nuniform sampler2D gradientTexture;\nuniform sampler2D colorTexture;\n\nvarying float v_Mag;\nvarying vec2 v_Uv;\n\nvoid main()\n{\n gl_FragColor = color;\n #ifdef GRADIENTTEXTURE_ENABLED\n gl_FragColor *= texture2D(gradientTexture, vec2(v_Mag, 0.5));\n#endif\n#ifdef COLORTEXTURE_ENABLED\n gl_FragColor *= texture2D(colorTexture, v_Uv);\n#endif\n}\n\n@end\n");
+/* harmony default export */ __webpack_exports__["a"] = ("@export ecgl.vfParticle.particle.fragment\n\nuniform sampler2D particleTexture;\nuniform sampler2D spawnTexture;\nuniform sampler2D velocityTexture;\n\nuniform float deltaTime;\nuniform float elapsedTime;\n\nuniform float speedScaling : 1.0;\n\nuniform vec2 textureSize;\nuniform vec4 region : [0, 0, 1, 1];\nuniform float firstFrameTime;\n\nvarying vec2 v_Texcoord;\n\n\nvoid main()\n{\n vec4 p = texture2D(particleTexture, v_Texcoord);\n bool spawn = false;\n if (p.w <= 0.0) {\n p = texture2D(spawnTexture, fract(v_Texcoord + elapsedTime / 10.0));\n p.w -= firstFrameTime;\n spawn = true;\n }\n vec2 v = texture2D(velocityTexture, fract(p.xy * region.zw + region.xy)).xy;\n v = (v - 0.5) * 2.0;\n p.z = length(v);\n p.xy += v * deltaTime / 10.0 * speedScaling;\n p.w -= deltaTime;\n\n if (spawn || p.xy != fract(p.xy)) {\n p.z = 0.0;\n }\n p.xy = fract(p.xy);\n\n gl_FragColor = p;\n}\n@end\n\n@export ecgl.vfParticle.renderPoints.vertex\n\n#define PI 3.1416926\n\nattribute vec2 texcoord : TEXCOORD_0;\n\nuniform sampler2D particleTexture;\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\n\nuniform float size : 1.0;\n\nvarying float v_Mag;\nvarying vec2 v_Uv;\n\nvoid main()\n{\n vec4 p = texture2D(particleTexture, texcoord);\n\n if (p.w > 0.0 && p.z > 1e-5) {\n gl_Position = worldViewProjection * vec4(p.xy * 2.0 - 1.0, 0.0, 1.0);\n }\n else {\n gl_Position = vec4(100000.0, 100000.0, 100000.0, 1.0);\n }\n\n v_Mag = p.z;\n v_Uv = p.xy;\n\n gl_PointSize = size;\n}\n\n@end\n\n@export ecgl.vfParticle.renderPoints.fragment\n\nuniform vec4 color : [1.0, 1.0, 1.0, 1.0];\nuniform sampler2D gradientTexture;\nuniform sampler2D colorTexture;\nuniform sampler2D spriteTexture;\n\nvarying float v_Mag;\nvarying vec2 v_Uv;\n\nvoid main()\n{\n gl_FragColor = color;\n#ifdef SPRITETEXTURE_ENABLED\n gl_FragColor *= texture2D(spriteTexture, gl_PointCoord);\n if (color.a == 0.0) {\n discard;\n }\n#endif\n#ifdef GRADIENTTEXTURE_ENABLED\n gl_FragColor *= texture2D(gradientTexture, vec2(v_Mag, 0.5));\n#endif\n#ifdef COLORTEXTURE_ENABLED\n gl_FragColor *= texture2D(colorTexture, v_Uv);\n#endif\n}\n\n@end\n\n@export ecgl.vfParticle.renderLines.vertex\n\n#define PI 3.1416926\n\nattribute vec3 position : POSITION;\n\nuniform sampler2D particleTexture;\nuniform sampler2D prevParticleTexture;\n\nuniform float size : 1.0;\nuniform vec4 vp: VIEWPORT;\nuniform mat4 worldViewProjection : WORLDVIEWPROJECTION;\n\nvarying float v_Mag;\nvarying vec2 v_Uv;\n\n@import clay.util.rand\n\nvoid main()\n{\n vec4 p = texture2D(particleTexture, position.xy);\n vec4 p2 = texture2D(prevParticleTexture, position.xy);\n\n p.xy = p.xy * 2.0 - 1.0;\n p2.xy = p2.xy * 2.0 - 1.0;\n\n if (p.w > 0.0 && p.z > 1e-5) {\n vec2 dir = normalize(p.xy - p2.xy);\n vec2 norm = vec2(dir.y / vp.z, -dir.x / vp.w) * sign(position.z) * size;\n if (abs(position.z) == 2.0) {\n gl_Position = vec4(p.xy + norm, 0.0, 1.0);\n v_Uv = p.xy;\n v_Mag = p.z;\n }\n else {\n gl_Position = vec4(p2.xy + norm, 0.0, 1.0);\n v_Mag = p2.z;\n v_Uv = p2.xy;\n }\n gl_Position = worldViewProjection * gl_Position;\n }\n else {\n gl_Position = vec4(100000.0, 100000.0, 100000.0, 1.0);\n }\n}\n\n@end\n\n@export ecgl.vfParticle.renderLines.fragment\n\nuniform vec4 color : [1.0, 1.0, 1.0, 1.0];\nuniform sampler2D gradientTexture;\nuniform sampler2D colorTexture;\n\nvarying float v_Mag;\nvarying vec2 v_Uv;\n\nvoid main()\n{\n gl_FragColor = color;\n #ifdef GRADIENTTEXTURE_ENABLED\n gl_FragColor *= texture2D(gradientTexture, vec2(v_Mag, 0.5));\n#endif\n#ifdef COLORTEXTURE_ENABLED\n gl_FragColor *= texture2D(colorTexture, v_Uv);\n#endif\n}\n\n@end\n");
 
 
 /***/ }),

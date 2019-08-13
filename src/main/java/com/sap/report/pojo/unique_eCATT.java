@@ -18,12 +18,17 @@ public class unique_eCATT {
     String abapreplacementclass;
     String applicationcomponentofrepleacementclass;
     String lobresponsibleforreplacementclass;
-    String ecattclassificationdonebylob;
+    String ecattclassificationce1908donebylob2019;
+    String ecattclassificationce1911donebylob;
     String responsiblelob;
     String lobcomments;
     String loccommitmentstatuspubliccloud1911;
 
-    public unique_eCATT(String accid, String text, String ecattcallingbcset, String containsdeliveryclassa, String intablemdascustd, String usedonlyindemodata, String usedinoponly, String lobresponsibleforecatt, String abapreplacementclass, String applicationcomponentofrepleacementclass, String lobresponsibleforreplacementclass, String ecattclassificationdonebylob, String responsiblelob, String lobcomments, String loccommitmentstatuspubliccloud1911) {
+    public unique_eCATT() {
+
+    }
+
+    public unique_eCATT(String accid, String text, String ecattcallingbcset, String containsdeliveryclassa, String intablemdascustd, String usedonlyindemodata, String usedinoponly, String lobresponsibleforecatt, String abapreplacementclass, String applicationcomponentofrepleacementclass, String lobresponsibleforreplacementclass, String ecattclassificationce1908donebylob2019, String ecattclassificationce1911donebylob, String responsiblelob, String lobcomments, String loccommitmentstatuspubliccloud1911) {
         this.accid = accid;
         this.text = text;
         this.ecattcallingbcset = ecattcallingbcset;
@@ -35,14 +40,33 @@ public class unique_eCATT {
         this.abapreplacementclass = abapreplacementclass;
         this.applicationcomponentofrepleacementclass = applicationcomponentofrepleacementclass;
         this.lobresponsibleforreplacementclass = lobresponsibleforreplacementclass;
-        this.ecattclassificationdonebylob = ecattclassificationdonebylob;
+        this.ecattclassificationce1908donebylob2019 = ecattclassificationce1908donebylob2019;
+        this.ecattclassificationce1911donebylob = ecattclassificationce1911donebylob;
         this.responsiblelob = responsiblelob;
         this.lobcomments = lobcomments;
         this.loccommitmentstatuspubliccloud1911 = loccommitmentstatuspubliccloud1911;
     }
 
-    public unique_eCATT() {
-
+    @Override
+    public String toString() {
+        return "unique_eCATT{" +
+                "accid='" + accid + '\'' +
+                ", text='" + text + '\'' +
+                ", ecattcallingbcset='" + ecattcallingbcset + '\'' +
+                ", containsdeliveryclassa='" + containsdeliveryclassa + '\'' +
+                ", intablemdascustd='" + intablemdascustd + '\'' +
+                ", usedonlyindemodata='" + usedonlyindemodata + '\'' +
+                ", usedinoponly='" + usedinoponly + '\'' +
+                ", lobresponsibleforecatt='" + lobresponsibleforecatt + '\'' +
+                ", abapreplacementclass='" + abapreplacementclass + '\'' +
+                ", applicationcomponentofrepleacementclass='" + applicationcomponentofrepleacementclass + '\'' +
+                ", lobresponsibleforreplacementclass='" + lobresponsibleforreplacementclass + '\'' +
+                ", ecattclassificationce1911donebylob2019='" + ecattclassificationce1908donebylob2019 + '\'' +
+                ", ecattclassificationce1911donebylob='" + ecattclassificationce1911donebylob + '\'' +
+                ", responsiblelob='" + responsiblelob + '\'' +
+                ", lobcomments='" + lobcomments + '\'' +
+                ", loccommitmentstatuspubliccloud1911='" + loccommitmentstatuspubliccloud1911 + '\'' +
+                '}';
     }
 
     public String getAccid() {
@@ -133,12 +157,20 @@ public class unique_eCATT {
         this.lobresponsibleforreplacementclass = lobresponsibleforreplacementclass;
     }
 
-    public String getEcattclassificationdonebylob() {
-        return ecattclassificationdonebylob;
+    public String getecattclassificationce1908donebylob2019() {
+        return ecattclassificationce1908donebylob2019;
     }
 
-    public void setEcattclassificationdonebylob(String ecattclassificationdonebylob) {
-        this.ecattclassificationdonebylob = ecattclassificationdonebylob;
+    public void setecattclassificationce1908donebylob2019(String ecattclassificationce1911donebylob2019) {
+        this.ecattclassificationce1908donebylob2019 = ecattclassificationce1911donebylob2019;
+    }
+
+    public String getecattclassificationce1911donebylob() {
+        return ecattclassificationce1911donebylob;
+    }
+
+    public void setecattclassificationce1911donebylob(String ecattclassificationce1911donebylob) {
+        this.ecattclassificationce1911donebylob = ecattclassificationce1911donebylob;
     }
 
     public String getResponsiblelob() {
@@ -163,27 +195,5 @@ public class unique_eCATT {
 
     public void setLoccommitmentstatuspubliccloud1911(String loccommitmentstatuspubliccloud1911) {
         this.loccommitmentstatuspubliccloud1911 = loccommitmentstatuspubliccloud1911;
-    }
-
-
-    @Override
-    public String toString() {
-        return "unique_eCATT{" +
-                "accid='" + accid + '\'' +
-                ", text='" + text + '\'' +
-                ", ecattcallingbcset='" + ecattcallingbcset + '\'' +
-                ", containsdeliveryclassa='" + containsdeliveryclassa + '\'' +
-                ", intablemdascustd='" + intablemdascustd + '\'' +
-                ", usedonlyindemodata=" + usedonlyindemodata +
-                ", usedinoponly='" + usedinoponly + '\'' +
-                ", lobresponsibleforecatt='" + lobresponsibleforecatt + '\'' +
-                ", abapreplacementclass='" + abapreplacementclass + '\'' +
-                ", applicationcomponentofrepleacementclass='" + applicationcomponentofrepleacementclass + '\'' +
-                ", lobresponsibleforreplacementclass='" + lobresponsibleforreplacementclass + '\'' +
-                ", ecattclassificationdonebylob='" + ecattclassificationdonebylob + '\'' +
-                ", responsiblelob='" + responsiblelob + '\'' +
-                ", lobcomments='" + lobcomments + '\'' +
-                ", loccommitmentstatuspubliccloud1911='" + loccommitmentstatuspubliccloud1911 + '\'' +
-                '}';
     }
 }

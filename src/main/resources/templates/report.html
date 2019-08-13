@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <script src="../static/echarts.min.js"></script>
-<script src="../static/jquery-3.4.1.min.js"></script>
+<script src="../static/jquery.min.js"></script>
 <script src="../static/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../static/bootstrap.min.css">
 <script src="../static/popper.min.js"></script>
@@ -18,12 +18,26 @@
                 type: "get",//提交的方式
                 dataType: 'json', //返回类型 TEXT字符串 JSON XML
     success: function(data) {   // 这里的data就是json格式的数据
-        var nums = new Array();
         var sum = 0;
-        for(var i=0; i<6; i++){
-            nums[i] = data.data[i].num;
-            sum += data.data[i].num;
+        //处理后端hashmap
+        var listkey = [];
+        for(var key in data.data){
+            listkey.push(key);
         }
+        function optionValue(value,name){
+            this.value = value;
+            this.name = name;
+        }
+
+        var optionvalues = [];
+        for(var i=0; i<listkey.length; i++){
+            var optionvalueindex = new optionValue(data.data[listkey[i]].length,listkey[i]);
+            sum += parseInt(data.data[listkey[i]].length);
+            optionvalues.push(optionvalueindex);
+        }
+        var json = JSON.stringify(optionvalues);
+        console.log(json);
+
         var dom = document.getElementById("container_left");
         var myChart = echarts.init(dom);
         var app = {};
@@ -39,9 +53,7 @@
                 left:'0%',
                 itemWidth:20,
                 itemHeight:20,
-                data:['Scheduled for CE 1908','Scheduled for CE 1911'
-                    ,'Object obsolete','To be solved by Central BC',
-                    'Can currently be ignored',"In clarification"],
+                data:listkey,
                 orient: 'vertical'
             },
             series: [
@@ -103,14 +115,7 @@
                             }
                         }
                     },
-                    data:[
-                        {value:nums[0], name:'Scheduled for CE 1908'},
-                        {value:nums[1], name:'Scheduled for CE 1911'},
-                        {value:nums[2], name:'Object obsolete'},
-                        {value:nums[3], name:'To be solved by Central BC'},
-                        {value:nums[4], name:'Can currently be ignored'},
-                        {value:nums[5], name:'In clarification'}
-                    ]
+                    data:optionvalues
                 }
             ]
         };
@@ -135,12 +140,24 @@
             type: "get",//提交的方式
             dataType: 'json', //返回类型 TEXT字符串 JSON XML
             success: function (data) {   // 这里的data就是json格式的数据
-                var nums = new Array();
                 var sum = 0;
-                for(var i=0; i<4; i++){
-                    nums[i] = data.data[i].num;
-                    sum += data.data[i].num;
+                var listkey = [];
+                for(var key in data.data){
+                    listkey.push(key);
                 }
+                function optionValue(value,name){
+                    this.value = value;
+                    this.name = name;
+                }
+
+                var optionvalues = [];
+                for(var i=0; i<listkey.length; i++){
+                    var optionvalueindex = new optionValue(data.data[listkey[i]].length,listkey[i]);
+                    sum += data.data[listkey[i]].length;
+                    optionvalues.push(optionvalueindex);
+                }
+                var json = JSON.stringify(optionvalues);
+
                 var dom = document.getElementById("container_right");
                 var myChart = echarts.init(dom);
                 var app = {};
@@ -156,7 +173,7 @@
                         left:'0%',
                         itemWidth:20,
                         itemHeight:20,
-                        data:['ECATT_MIGRATION_TO_RC','ECATT_NO_MIGRATION','ECATT_FORCE_IMG','ECATT_MULT_TYPE'],
+                        data:listkey,
                         orient: 'vertical'
                     },
                     series: [
@@ -218,12 +235,7 @@
                                     }
                                 }
                             },
-                            data:[
-                                {value:nums[0], name:'ECATT_MIGRATION_TO_RC'},
-                                {value:nums[1], name:'ECATT_NO_MIGRATION'},
-                                {value:nums[2], name:'ECATT_FORCE_IMG'},
-                                {value:nums[3], name:'ECATT_MULT_TYPE'}
-                            ]
+                            data:optionvalues
                         }
                     ]
                 };

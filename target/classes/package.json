@@ -1,0 +1,25 @@
+{
+  "name": "resources",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bootstrap": "^3.4.1",
+    "bootstrap3": "^3.3.5",
+    "jquery": "^3.4.1",
+    "path": "^0.12.7",
+    "qs": "^6.7.0",
+    "vue": "^2.6.10",
+    "webuploader": "^0.1.8",
+    "xlsx": "^0.15.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.39.1"
+  },
+  "description": ""
+}
