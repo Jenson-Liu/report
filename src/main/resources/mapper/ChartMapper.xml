@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sap.report.mapper.ChartMapper">
+    <resultMap id="chart" type="com.sap.report.entity.Chart">
+        <result javaType="string" property="excelName" column="excel_name"/>
+        <result javaType="string" property="chartColumn" column="chart_column"/>
+    </resultMap>
+
+    <insert id="saveChart" parameterType="chart">
+        insert into chart(excel_name,chart_column) values (#{excelName},#{chartColumn})
+    </insert>
+
+    <delete id="deleteChart" parameterType="string">
+        delete from chart where excel_name = #{excelName}
+    </delete>
+
+    <select id="getChartColumn" resultType="java.lang.Character">
+        select chart_column from chart where excel_name = #{excelName}
+    </select>
+</mapper>

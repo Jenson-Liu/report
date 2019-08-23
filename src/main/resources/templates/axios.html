@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap3/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap3/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <input type="file" id="file">
+    <button onclick="sendfile()"></button>
+    <button type="button"  onclick="openUrl()" class="btn btn-primary">1_Unique_eCATT</button>
+<script>
+    function sendfile() {
+        let file =  document.getElementById('file').files[0];//获取id上传的file
+        let param = new FormData();
+        param.append("file",file);
+        param.append("name","name")
+        axios({
+            url:'/demo/upload',
+            method:'post',
+            data:param,
+            headers: {'Content-Type': 'multipart/form-data'}
+        }).then((res)=>{console.log(res)})
+    }
+    
+    function openUrl(){
+        axios({
+            method: 'post',
+            url: '/demo/user',
+            data: {
+                ID: 'Fred',
+                lastName: 'Flintstone'
+            }
+        });
+
+        // 为给定 ID 的 user 创建请求
+        axios.get('/demo/name')
+            .then(function (response) {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+</body>
+</html>

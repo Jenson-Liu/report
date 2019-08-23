@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sap.report.mapper.MainMapper">
+    <resultMap id="main" type="com.sap.report.entity.Main">
+        <result javaType="string" property="excelName" column="excel_name"/>
+        <result javaType="string" property="mainColumn" column="main_column"/>
+    </resultMap>
+    <insert id="saveMain">
+        INSERT INTO main(excel_name, main_column) values (#{excelName},#{mainColumn})
+    </insert>
+
+    <select id="getMainColumn" resultType="java.lang.Character" parameterType="string">
+        select main_column from main where excel_name = #{excelName}
+    </select>
+
+    <delete id="deleteMain" parameterType="string">
+        delete from main where excel_name = #{excelName}
+    </delete>
+</mapper>

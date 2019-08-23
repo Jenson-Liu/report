@@ -19,7 +19,7 @@ public class Filetool {
     public static ArrayList<File> MultipartFiletoFile(MultipartFile[] multipartFilelist) {
         ArrayList<File> fileArrayList = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFilelist) {
-            File file = new File("a.docx");
+            File file = null;
             InputStream ins = null;
             try {
                 ins = multipartFile.getInputStream();

@@ -1,0 +1,108 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+
+</head>
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+<body>
+<div class="container">
+    <h2>SHOW TABLE</h2>
+    <select class="combobox" id="select">
+        <option></option>
+        <option value="Duplicate Entry - ignored">Duplicate Entry - ignored</option>
+        <option value="Scheduled for CE 1911">Scheduled for CE 1911</option>
+        <option value="Already delivered">Already delivered</option>
+        <option value="To be solved by Central BC">To be solved by Central BC</option>
+    </select>
+    <button type="button" class="btn btn-success" onclick="selectoption()">Execute</button>
+    <button type="button" class="btn btn-primary span3 offset2" onclick="backtoIndex()">Back to Index</button>
+    <script>
+        function backtoIndex() {
+            window.location.href = "/report/index";
+        }
+    </script>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Customizing Object</th>
+            <th>Customizing Object</th>
+            <th>reference to eCATT or BC-Set</th>
+            <th>Customizing Object Text </th>
+            <th>LoB Commitment Status
+                X/4 S/4 Public Cloud 1911</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+        </tbody>
+    </table>
+</div>
+<script>
+    function doajaxlist() {
+        $.ajax({
+            url: "/report/TransportableCCF/Alllist",//请求地址
+            contentType: "application/json;charset=UTF-8",
+            data: {},
+            type: "get",//提交的方式
+            dataType: 'json', //返回类型 TEXT字符串 JSON XML
+            success: function (data) {   // 这里的data就是json格式的数据
+                for (var key in data.data){
+                    var datahtml = " <tr onclick='on(this)' id='" +data.data[key][1]+
+                        "'>\n" +
+                        "            <td>" +data.data[key][0] +
+                        "</td>\n" +
+                        "            <td>" +data.data[key][1] +
+                        "</td>\n" +
+                        "            <td>" +data.data[key][2] +
+                        "</td>\n" +
+                        "            <td>" +data.data[key][3] +
+                        "</td>\n" +
+                        "            <td>" +data.data[key][4] +
+                        "</td>\n" +
+                        "        </tr>";
+                   $('#list').append(datahtml);
+               }
+
+            }
+        });
+    }
+    function on(data) {
+        window.location.href = "/report/TransportableCCF/tableshow?id="+data.id;
+    }
+    function selectoption(data) {
+        var selectClass = $("#select").val();
+        $.ajax({
+            url: "/report/select/TransportableCCF?select="+selectClass,//请求地址
+            contentType: "application/json;charset=UTF-8",
+            data: {},
+            type: "get",//提交的方式
+            dataType: 'json', //返回类型 TEXT字符串 JSON XML
+            success: function (data) {
+                var datahtml = "";
+                for (var key in data.data){
+                    var datahtml = " <tr onclick='on(this)' id='" +data.data[key][1]+
+                        "'>\n" +
+                        "            <td>" +data.data[key][0] +
+                        "</td>\n" +
+                        "            <td>" +data.data[key][1] +
+                        "</td>\n" +
+                        "            <td>" +data.data[key][2] +
+                        "</td>\n" +
+                        "            <td>" +data.data[key][3] +
+                        "</td>\n" +
+                        "            <td>" +data.data[key][4] +
+                        "</td>\n" +
+                        "        </tr>";
+                }
+                 document.getElementById("list").innerHTML = datahtml;
+            }
+        })
+    }
+
+    doajaxlist();
+
+</script>
+</body>
+
+</html>

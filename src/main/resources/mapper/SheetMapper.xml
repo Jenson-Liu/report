@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sap.report.mapper.SheetMapper">
+    <resultMap id="sheet" type="com.sap.report.entity.Sheet">
+        <id javaType="string" property="excelName" column="excel_name"/>
+        <result javaType="string" property="sheetName" column="sheet_name"/>
+    </resultMap>
+
+    <select id="saveSheet"  parameterType="sheet">
+        insert into sheet(excel_name,sheet_name) values (#{excelName},#{sheetName})
+    </select>
+
+    <select id="getSheetName" resultType="string" parameterType="string">
+        select sheet_name from sheet where excel_name = #{excelName}
+    </select>
+
+    <delete id="deleteSheet" parameterType="string">
+        delete from sheet where excel_name = #{excelName}
+    </delete>
+</mapper>

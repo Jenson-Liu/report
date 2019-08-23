@@ -1,8 +1,11 @@
 package com.sap.report.tool;
 
 import com.sap.report.pojo.unique_eCATT;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
@@ -11,9 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 /**
  * @author : Jenson.Liu
@@ -22,6 +23,91 @@ import java.util.LinkedHashMap;
 public class ExcelTool {
 
     private static final Logger logger = LoggerFactory.getLogger(ExcelTool.class);
+
+    /**
+     * 获取指定excel文件的sheet
+     * @param fileName
+     * @return
+     */
+    public static ArrayList<String> getSheets(String fileName){
+        ArrayList<String> list = new ArrayList<String>();
+        File excelFile = new File("src/main/resources/static/lips/"+fileName);
+        XSSFWorkbook wb = null;
+        try {
+            wb = new XSSFWorkbook(new FileInputStream(excelFile));
+            Iterator<Sheet> iter =  wb.sheetIterator();
+            while (iter.hasNext()){
+                String sheetName = iter.next().getSheetName();
+                list.add(sheetName);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
+     * 保证每次只读一次磁盘IO
+     * 指定filename和sheet获取对应的sheet
+     * @param fileName
+     * @param sheetfilter
+     * @return
+     */
+    public static Sheet getSheet(String fileName,String sheetfilter){
+        FileInputStream inputStream = null;
+        XSSFWorkbook wb = null;
+        File excelFile = new File("src/main/resources/static/lips/"+fileName);
+        try {
+            inputStream = new FileInputStream(excelFile);
+            wb = new XSSFWorkbook(inputStream);
+            XSSFSheet sheet = wb.getSheet(sheetfilter);
+            return sheet;
+        }catch (Exception e){
+            logger.info("error to read");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ArrayList<String> getAllRowName(Sheet sheet){
+        try {
+            int num = 0;
+            ArrayList<String> RowNames = new ArrayList<>();
+            Row row = sheet.getRow(0);
+            for (Cell cell:row){
+                RowNames.add(cell.getStringCellValue());
+            }
+            return RowNames;
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static int getAllRowNum(Sheet sheet){
+        try {
+            int num = 0;
+            int index = 0;
+            for(Row row:sheet){
+                try{
+                    if(row.getCell(0).getStringCellValue()!=null){
+                        num++;
+                    } else {
+                      index++;
+                    }
+                    if(index == 3){
+                        return num;
+                    }
+                }catch (NullPointerException e){
+                    return num;
+                }
+            }
+            return num;
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
 
     public static LinkedHashMap<String, String> reportMap(String filename, String sheetfilter,
                                                           int lobnum, int statusnum) {
@@ -40,6 +126,7 @@ public class ExcelTool {
                             sheet.getRow(i).getCell(statusnum).getStringCellValue());
                 }
             }
+            wb.close();
             } catch (IOException e) {
             e.printStackTrace();
         }
@@ -167,16 +254,9 @@ public class ExcelTool {
         return -1;
     }
 
-    public static int getAllRow(String filename,String sheetfilter) throws Exception{
-        File excelFile = new File(filename);
-        XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(excelFile));
-        XSSFSheet sheet = wb.getSheet("sheetfilter");
-        int num = 0;
-        for (Row row : sheet) {
-            if(row.getCell(0).getStringCellValue() !=""){
-                num++;
-            }
-        }
-        return num;
-    }
+
+
+
+
+
 }

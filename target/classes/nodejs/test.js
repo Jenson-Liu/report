@@ -11,11 +11,22 @@
 //     }
 // }
 
-var xlsx = require('xlsx');
-console.log(__dirname+'/2_BC_Set.XLSX');
-const workbook = xlsx.readFile('/Users/i501695/IdeaProjects/report/src/main/resources/nodejs/service/2_BC_Set.XLSX');
-// 获取 Excel 中所有表名
-const sheetNames = workbook.SheetNames; // 返回 ['sheet1', 'sheet2']
-// 根据表名获取对应某张表
-const worksheet = workbook.Sheets[sheetNames[0]];
-console.log(sheetNames);
+// var xlsx = require('xlsx');
+// console.log(__dirname);
+// const workbook = xlsx.readFile('../static/lips/2_BC_Set.XLSX');
+// // 获取 Excel 中所有表名
+// const sheetNames = workbook.SheetNames; // 返回 ['sheet1', 'sheet2']
+// // 根据表名获取对应某张表
+// const worksheet = workbook.Sheets[sheetNames[0]];
+// console.log(sheetNames);
+
+let xslt = require("../static/service/excelService");
+// let arr = [];
+// arr = xslt.getSheets("2_BC_Set.XLSX");
+// for(let c in arr){
+//     console.log(arr[c])
+// }
+let arr = xslt.getColumns("2_BC_Set.XLSX","BC-Set");
+for(let c in arr){
+    console.log(arr[c])
+}

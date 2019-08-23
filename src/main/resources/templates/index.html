@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to index page</title>
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <script src="../static/jquery.min.js"></script>
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <p>
+            <button type="button" id="/report/Unique/welcome" onclick="openUrl(this)" class="btn btn-primary">1_Unique_eCATT</button>
+        </p>
+        <p>
+            <button type="button" id="/report/BCSet/welcome" onclick="openUrl(this)" class="btn btn-primary">2_BC_Set</button>
+        </p>
+        <p>
+            <button type="button" id="/report/Tables/welcome" onclick="openUrl(this)" class="btn btn-primary">3_E_Tables_CCF</button>
+        </p>
+        <p>
+            <button type="button" id="/report/TransportableCCF/welcome" onclick="openUrl(this)" class="btn btn-primary">5_Not_Transportable_CCF</button>
+        </p>
+        <p>
+            <button type="button" id="/report/Whitelist/welcome" onclick="openUrl(this)" class="btn btn-primary">6_Client000_Whitelist_Tables</button>
+        </p>
+        <p>
+            <button type="button" id="/report/CustObjects/welcome" onclick="openUrl(this)" class="btn btn-primary">7_CustObjects_L_T_CCF</button>
+        </p>
+
+    </div>
+<script>
+    function openUrl(data) {
+        window.location.href = data.id;
+    }
+</script>
+</body>
+</html>

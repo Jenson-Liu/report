@@ -54,7 +54,7 @@ public class unique_eCATTPro {
     }
 
     public static ArrayList<String> getAllLoccommitmentstatuspubliccloud1911byrealname() {
-        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/1_Unique_eCATT.xlsx", "eCATT", 16);
+        ArrayList<unique_eCATT> list = ExcelTool.AllreportList("src/main/resources/static/lips/1_Unique_eCATT.xlsx", "eCATT", 16);
         ArrayList<String> resultlist = new ArrayList<>();
         ArrayList<String> newlist = new ArrayList<>();
         for (unique_eCATT unique_eCATT : list) {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Index Page</title>
+    <link rel="stylesheet" href="/static/bootstrap3/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap3/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/axios/dist/axios.min.js"></script>
+    <style type="text/css">
+        .centerEle {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function reShow() {
+            document.getElementById('viewfile').value = document.getElementById('uploadfile').value;
+        }
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span10">
+            <nav class="navbar navbar-default navbar-light" style="background-color: #e3f2fd;" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header systemLab">
+                        <a class="navbar-brand" href="#">报表系统</a>
+                    </div>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">查看所有系统</a></li>
+                            <li class="active"><a href="#">上传文件</a></li>
+                            <li><a href="#">系统管理</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-2" style="font-size: 15px">1.which sheet do you want:</div>
+            <div class="col-md-2">
+                <select class="form-control" id="selectOption">
+                </select>
+            </div>
+            <div class="col-md-2"><button type="button" class="btn btn-default" onclick="select()">Excute</button></div>
+        </div>
+    </div>
+</div>
+<script>
+    function select() {
+        let param = new FormData();
+        param.append("sheet",$('#selectOption').val());
+        axios({
+            url:'/report/setCurrentSheet',
+            method:'post',
+            data:param
+        }).then((res)=>{
+            window.location.href = "/report/design";
+        })
+    }
+    function init() {
+        axios.get('/report/getCurrentFile')
+            .then(function (response) {
+                let result = response.data.data;
+                for(let i in result){
+                    let str = " <option id='" +result[i]+
+                        "'>"+result[i]+"</option>\n";
+                    $('#selectOption').append(str);
+                    console.log(result[i]);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    init();
+</script>
+</body>
+</html>

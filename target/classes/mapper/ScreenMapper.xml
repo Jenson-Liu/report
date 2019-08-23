@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sap.report.mapper.ScreenMapper">
+    <resultMap id="screen" type="com.sap.report.entity.Screen">
+        <id javaType="string" property="excelName" column="excel_name"/>
+        <result javaType="string" property="screenProduce" column="screen_produce"/>
+    </resultMap>
+
+    <insert id="saveScreen" parameterType="screen">
+        insert into screen(excel_name,screen_produce)
+        values (#{excelName},#{screenProduce})
+    </insert>
+
+    <update id="updateScreenProduce" parameterType="string">
+        update screen set screen_produce where excel_name = #{excelName}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete screen where excel_name = #{excelName}
+    </delete>
+</mapper>
