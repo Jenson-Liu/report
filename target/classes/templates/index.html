@@ -3,13 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to index page</title>
-    <link rel="stylesheet" href="../static/bootstrap.min.css">
-    <script src="../static/jquery.min.js"></script>
-    <script src="../static/popper.min.js"></script>
-    <script src="../static/bootstrap.min.js"></script>
+<!--    <link rel="stylesheet" href="/static/bootstrap.min.css">-->
+<!--    <script src="/static/jquery.min.js"></script>-->
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap3/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap3/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <div class="container">
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span10">
+            <nav class="navbar navbar-default navbar-light" style="background-color: #e3f2fd;" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header systemLab">
+                        <a class="navbar-brand" href="#">报表系统</a>
+                    </div>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li  class="active"><a href="#">查看所有系统</a></li>
+                            <li><a href="#">上传文件</a></li>
+                            <li><a href="#">系统管理</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+    <div class="container col-xs-4">
         <p>
             <button type="button" id="/report/Unique/welcome" onclick="openUrl(this)" class="btn btn-primary">1_Unique_eCATT</button>
         </p>
@@ -28,7 +53,9 @@
         <p>
             <button type="button" id="/report/CustObjects/welcome" onclick="openUrl(this)" class="btn btn-primary">7_CustObjects_L_T_CCF</button>
         </p>
-
+        <p>
+            <button type="button" id="/report/CustomizingObjects/welcome" onclick="openUrl(this)" class="btn btn-primary">8_CustomizingObjects_with_Events_or_modified_UIs</button>
+        </p>
     </div>
 <script>
     function openUrl(data) {

@@ -1,6 +1,7 @@
 package com.sap.report.tool;
 
 import com.sap.report.pojo.unique_eCATT;
+import com.sap.report.service.lipsService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -10,6 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -100,6 +102,48 @@ public class ExcelTool {
                     }
                 }catch (NullPointerException e){
                     return num;
+                }catch (IllegalStateException e1){
+                    continue;
+                }
+            }
+            return num;
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+     * 根据num
+     * @param sheet
+     * @return
+     */
+    public static int getAllRowNum(Sheet sheet,char c){
+        int selectnum = (int)c - 65;
+        System.out.println(selectnum);
+        try {
+            int num = 0;
+            int index = 0;
+            int i = 0;
+            for(Row row:sheet){
+                try{
+                    if(row.getCell(selectnum).getStringCellValue()!=null){
+                        num++;
+                        index = 0;
+                    } else {
+                        index++;
+                    }
+                    if(index == 3){
+                        return num;
+                    }
+                }catch (NullPointerException e){
+                    num++;
+                    index++;
+                    if(index == 3){
+                        return num;
+                    }
+                }catch (IllegalStateException e1){
+                    continue;
                 }
             }
             return num;
@@ -254,9 +298,25 @@ public class ExcelTool {
         return -1;
     }
 
+    /**
+     * 通过sheet，需要的字符，获取标题头
+     * @param sheet
+     * @param filter
+     * @param index
+     * @return
+     */
+    public static ArrayList<String> getColumnsBySheet(Sheet sheet,ArrayList<Character> filter,char index){
+        ArrayList<String> list = new ArrayList<>();
+        int rownum = ExcelTool.getAllRowNum(sheet,index);
+        for (char c:filter){
+            list.add(sheet.getRow(0).getCell(ChartoNum(c)).getStringCellValue());
+        }
+        return list;
+    }
 
-
-
-
+    public static int ChartoNum(char index){
+        int num = (int)index - 65;
+        return num;
+    }
 
 }

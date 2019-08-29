@@ -96,6 +96,7 @@ public class PageController {
      */
     @RequestMapping(value = "/BCSet/welcome",method = RequestMethod.GET)
     public String welcomeBCSet(){
+        redisService.setValue("visit-file","2_BC_Set.xlsx");
         return "reportBC";
     }
 
@@ -105,6 +106,7 @@ public class PageController {
      */
     @RequestMapping(value = "/Unique/welcome",method = RequestMethod.GET)
     public String WelcomeUnique(){
+        redisService.setValue("visit-file","1_Unique_eCATT.xlsx");
         return "reportUnique";
     }
 
@@ -114,7 +116,48 @@ public class PageController {
      */
     @RequestMapping(value = "/TransportableCCF/welcome",method = RequestMethod.GET)
     public String WelcomereportTransportableCCF(){
+        redisService.setValue("visit-file","5_Not_Transportable_CCF.xlsx");
         return "reportTransportableCCF";
+    }
+
+    /**
+     * 进入Tables主页
+     * @return
+     */
+    @RequestMapping(value = "/Tables/welcome",method = RequestMethod.GET)
+    public String welcomeReportables(){
+        redisService.setValue("visit-file","3_E_Tables_CCF.xlsx");
+        return "reportTables";
+    }
+
+    /**
+     * 进入CustObjects主页
+     * @return
+     */
+    @RequestMapping(value = "/CustObjects/welcome",method = RequestMethod.GET)
+    public String welcomeReportCustObjects(){
+        redisService.setValue("visit-file","7_CustObjects_L_T_CCF.xlsx");
+        return "reportCustObjects";
+    }
+
+    /**
+     * 进入Whitelist主页
+     * @return
+     */
+    @RequestMapping(value = "/Whitelist/welcome",method = RequestMethod.GET)
+    public String welcomeReportWhitelist(){
+        redisService.setValue("visit-file","6_Client000_Whitelist_Tables.xlsx");
+        return "reportWhitelist";
+    }
+
+    /**
+     * 进入CustomizingObjects主页
+     * @return
+     */
+    @RequestMapping(value = "/CustomizingObjects/welcome",method = RequestMethod.GET)
+    public String welcomeCustomizingObjects(){
+        redisService.setValue("visit-file","8_CustomizingObjects_with_Events_or_modified_UIs.xlsx");
+        return "reportCustomizingObjects";
     }
 
     /**
@@ -122,7 +165,7 @@ public class PageController {
      * @return
      */
     @RequestMapping(value = "/TransportableCCF/filter",method = RequestMethod.GET)
-    public String WelcomereportTransportableCCFFilter(){
+    public String welcomeReportTransportableCCFFilter(){
         return "alllistTransportableCCF";
     }
 
@@ -136,5 +179,41 @@ public class PageController {
         return "detailTransportableCCF.html";
     }
 
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping(value = "/Tables/allList",method = RequestMethod.GET)
+    public String getAlllistTables(){
+        return "alllistTables";
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping(value = "/Whitelist/allList",method = RequestMethod.GET)
+    public String getAlllistWhitelist(){
+        return "alllistWhitelist";
+    }
+
+    /**
+     *alllistCustomizingObjects
+     * @return
+     */
+    @RequestMapping(value = "/CustObjects/allList",method = RequestMethod.GET)
+    public String getAlllistCustObjects(){
+        return "alllistCustObjects";
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping(value = "/CustomizingObjects/allList",method = RequestMethod.GET)
+    public String getAlllistCustomizingObjects(){
+        return "alllistCustomizingObjects";
+    }
 
 }

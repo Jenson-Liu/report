@@ -3,9 +3,12 @@ package com.sap.report.tool;
 
 import com.sap.report.pojo.unique_eCATT;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.*;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -48,4 +51,19 @@ public class ExcelToolTest {
             System.out.println(name);
         }
     }
+
+    @Test
+    public void testtime(){
+        FileInputStream inputStream = null;
+        XSSFWorkbook wb = null;
+        File excelFile = new File("src/main/resources/static/lips/7_CustObjects_L_T_CCF.xlsx");
+        try {
+            inputStream = new FileInputStream(excelFile);
+            wb = new XSSFWorkbook(inputStream);
+            XSSFSheet sheet = wb.getSheet("CustObjects_L_T_CCF");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }

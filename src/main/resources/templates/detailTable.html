@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+</head>
+<body>
+<script>
+    var url = window.location.href;
+    var i = url.indexOf("?");
+    var data = url.substring(i+4,url.length);
+    console.log('data='+data);
+
+    $.ajax({
+        url: "/report/Detail/getDetail?id=" + data,//请求地址
+        contentType: "application/json;charset=UTF-8",
+        data: {},
+        type: "get",//提交的方式
+        dataType: 'json', //返回类型 TEXT字符串 JSON XML
+        success: function (data) {
+            console.log(data);
+            var datahtml = "";
+            for (var key in data.data){
+                console.log(key+":"+data.data[key]);
+                datahtml += " <tr class=\"table-primary\">\n" +
+                    "        <td>"+key+"</td>\n" +
+                    "        <td>" +data.data[key]+
+                    "</td>\n" +
+                    "        </tr>\n"
+            }
+            $('#info').append(datahtml);
+        }
+        });
+
+</script>
+<div class="container">
+    <h2 id="title">information</h2>
+    <button type="button" class="btn btn-primary span3 offset2" onclick="backtoIndex()">Back to Index</button>
+    <script>
+        function backtoIndex() {
+            window.location.href = "/report/index";
+        }
+    </script>
+    <table class="table" id="content">
+        <thead>
+        <tr>
+            <th>Column</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody id="info">
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

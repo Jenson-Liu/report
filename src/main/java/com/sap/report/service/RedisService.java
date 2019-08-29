@@ -38,6 +38,10 @@ public class RedisService {
         return stringRedisTemplate.delete(key);
     }
 
+    public Object getSheet(String key,String field){
+        return stringRedisTemplate.opsForHash().get(key,field);
+    }
+
 }
 
 

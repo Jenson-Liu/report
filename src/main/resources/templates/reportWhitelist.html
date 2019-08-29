@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="/static/echarts.min.js"></script>
+<script src="/static/jquery.min.js"></script>
+<script src="/static/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<script src="/static/popper.min.js"></script>
+<script>
+    function doajaxlob() {
+        $.ajax({
+                url: "/report/Whitelist/getPercent",//请求地址
+                contentType: "application/json;charset=UTF-8",
+                data: {},
+                type: "get",//提交的方式
+                dataType: 'json', //返回类型 TEXT字符串 JSON XML
+    success: function(data) {   // 这里的data就是json格式的数据
+        var sum = 0;
+        //处理后端hashmap
+        var listkey = [];
+        for(var key in data.data){
+            listkey.push(key);
+        }
+        function optionValue(value,name){
+            this.value = value;
+            this.name = name;
+        }
+
+        var optionvalues = [];
+        for(var i=0; i<listkey.length; i++){
+            var optionvalueindex = new optionValue(data.data[listkey[i]].length,listkey[i]);
+            sum += parseInt(data.data[listkey[i]].length);
+            optionvalues.push(optionvalueindex);
+        }
+        var json = JSON.stringify(optionvalues);
+        console.log(json);
+
+        var dom = document.getElementById("container_left");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        app.title = '环形图';
+        option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                bottom:0,
+                left:'0%',
+                itemWidth:20,
+                itemHeight:20,
+                data:listkey,
+                orient: 'vertical'
+            },
+            series: [
+                {
+                    name:'detail',
+                    type:'pie',
+                    selectedMode: 'single',
+                    center: ['50%', '35%'],
+                    radius: [0, '20%'],
+
+                    label: {
+                        normal: {
+                            position: 'inner'
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:[
+                        {value:sum, name:sum, selected:true}
+                    ]
+                },
+                {
+                    name:'detail',
+                    type:'pie',
+                    radius: ['40%', '55%'],
+                    center: ['50%', '35%'],
+                    label: {
+                        normal: {
+                            formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                            backgroundColor: '#eee',
+                            borderColor: '#aaa',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            rich: {
+                                a: {
+                                    color: '#999',
+                                    lineHeight: 8,
+                                    align: 'center'
+                                },
+                                hr: {
+                                    borderColor: '#aaa',
+                                    width: '100%',
+                                    borderWidth: 0.5,
+                                    height: 0
+                                },
+                                b: {
+                                    fontSize: 8,
+                                    lineHeight: 10
+                                },
+                                per: {
+                                    color: '#eee',
+                                    backgroundColor: '#334455',
+                                    padding: [2, 4],
+                                    borderRadius: 2
+                                }
+                            }
+                        }
+                    },
+                    data:optionvalues
+                }
+            ]
+        };
+        var myChart = echarts.init(document.getElementById('container_left'));
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+            console.log(params.name);
+        });
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+    });
+    }
+
+    doajaxlob();
+    function doajaxclass() {
+        $.ajax({
+            url: "/report/BCSet/getPercentbyLob",//请求地址
+            contentType: "application/json;charset=UTF-8",
+            data: {},
+            type: "get",//提交的方式
+            dataType: 'json', //返回类型 TEXT字符串 JSON XML
+            success: function (data) {   // 这里的data就是json格式的数据
+                var sum = 0;
+                var listkey = [];
+                for(var key in data.data){
+                    listkey.push(key);
+                }
+                function optionValue(value,name){
+                    this.value = value;
+                    this.name = name;
+                }
+
+                var optionvalues = [];
+                for(var i=0; i<listkey.length; i++){
+                    var optionvalueindex = new optionValue(data.data[listkey[i]].length,listkey[i]);
+                    sum += data.data[listkey[i]].length;
+                    optionvalues.push(optionvalueindex);
+                }
+                var json = JSON.stringify(optionvalues);
+
+                var dom = document.getElementById("container_right");
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                app.title = '环形图';
+                option = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                    },
+                    legend: {
+                        bottom:0,
+                        left:'0%',
+                        itemWidth:20,
+                        itemHeight:20,
+                        data:listkey,
+                        orient: 'vertical'
+                    },
+                    series: [
+                        {
+                            name:'detail',
+                            type:'pie',
+                            selectedMode: 'single',
+                            center: ['50%', '35%'],
+                            radius: [0, '20%'],
+
+                            label: {
+                                normal: {
+                                    position: 'inner'
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data:[
+                                {value:sum, name:sum, selected:true}
+                            ]
+                        },
+                        {
+                            name:'detail',
+                            type:'pie',
+                            radius: ['40%', '55%'],
+                            center: ['50%', '35%'],
+                            label: {
+                                normal: {
+                                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                    backgroundColor: '#eee',
+                                    borderColor: '#aaa',
+                                    borderWidth: 1,
+                                    borderRadius: 4,
+                                    rich: {
+                                        a: {
+                                            color: '#999',
+                                            lineHeight: 8,
+                                            align: 'center'
+                                        },
+                                        hr: {
+                                            borderColor: '#aaa',
+                                            width: '100%',
+                                            borderWidth: 0.5,
+                                            height: 0
+                                        },
+                                        b: {
+                                            fontSize: 8,
+                                            lineHeight: 10
+                                        },
+                                        per: {
+                                            color: '#eee',
+                                            backgroundColor: '#334455',
+                                            padding: [2, 4],
+                                            borderRadius: 2
+                                        }
+                                    }
+                                }
+                            },
+                            data:optionvalues
+                        }
+                    ]
+                };
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+                var myChart = echarts.init(document.getElementById('container_right'));
+                myChart.setOption(option);
+                myChart.on('click', function (params) {
+                    console.log(params.name);
+                });
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+            }
+        });
+    }
+            doajaxclass();
+</script>
+<style>
+    .mian{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10vh;
+    }
+    #container_left{
+        width: 49%;
+        height: 55vh;
+        border: 1px solid black;
+    }
+    #container_right{
+        width: 49%;
+        height: 55vh;
+        border: 1px solid black;
+
+    }
+</style>
+<body style="width: 100%; margin: 0">
+<button id="fat-btn1" class="btn btn-primary" data-loading-text="Loading..."
+        type="button"> Show Table
+</button>
+<script>
+    $(function() {
+        $("#fat-btn1").click(function(){
+            $(this).button('loading').delay(1000).queue(function() {
+                window.location.href = "/report/Whitelist/allList";
+            });
+        });
+    });
+</script>
+    <div class="mian">
+        <div id="container_left"></div>
+    </div>
+</body>
+</html>

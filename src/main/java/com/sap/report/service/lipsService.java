@@ -76,6 +76,47 @@ public class lipsService {
     }
 
     /**
+     *
+     * @param sheet
+     * @param option
+     * @param index
+     * @param size
+     * @return
+     */
+    public ArrayList<String> getScreenMap(Sheet sheet, char option, char index,int size) {
+        int optionNum = (int)option - 65;
+        int indexNum = (int)index - 65;
+        ArrayList<String> resultlist = new ArrayList<>();
+        ArrayList<String> newlist = new ArrayList<>();
+        for (int i=1; i<size; i++) {
+            String indexname = null;
+            try {
+                indexname = sheet.getRow(i).getCell(indexNum).getStringCellValue().toLowerCase();
+            }catch (NullPointerException e1){
+                indexname = "null";
+            }catch (IllegalStateException e2){
+                continue;
+            }
+            if ("produce".equals(indexname)) {
+                try {
+                    resultlist.add(sheet.getRow(i).getCell(optionNum).getStringCellValue());
+                }catch (NullPointerException e3){
+                    resultlist.add("null");
+                    continue;
+                }catch (IllegalStateException e){
+                    continue;
+                }
+            }
+        }
+        for (String cd:resultlist) {
+            if (!newlist.contains(cd)) {
+                newlist.add(cd);
+            }
+        }
+        return newlist;
+    }
+
+    /**
      * 获取指定的指定列下的
      * option的所有不同类型
      * @param sheet
@@ -169,7 +210,36 @@ public class lipsService {
         LinkedHashMap<String,String> hashMap = new LinkedHashMap<>();
         ArrayList<String> RowNames = ExcelTool.getAllRowName(sheet);
         int rownum = ExcelTool.getAllRowNum(sheet);
+        System.out.println("rownum:"+rownum);
         for (int i=1; i<rownum; i++) {
+            System.out.println(sheet.getRow(i).getCell(index).getStringCellValue());
+            if(firstRow.equals(sheet.getRow(i).getCell(index).getStringCellValue())){
+                for (int j=0; j<RowNames.size(); j++){
+                    try {
+                        hashMap.put(RowNames.get(j),sheet.getRow(i).getCell(j).getStringCellValue());
+                    }catch (NullPointerException e){
+                        hashMap.put(RowNames.get(j),"");
+                    }
+                }
+                break;
+            }
+        }
+        return hashMap;
+    }
+
+    /**
+     *
+     * @param sheet
+     * @param firstRow
+     * @param index
+     * @return
+     */
+    public LinkedHashMap<String,String> getDeatil(Sheet sheet, String firstRow, int index,char c){
+        LinkedHashMap<String,String> hashMap = new LinkedHashMap<>();
+        ArrayList<String> RowNames = ExcelTool.getAllRowName(sheet);
+        int rownum = ExcelTool.getAllRowNum(sheet,c);
+        for (int i=1; i<rownum; i++) {
+            System.out.println(sheet.getRow(i).getCell(index).getStringCellValue());
             if(firstRow.equals(sheet.getRow(i).getCell(index).getStringCellValue())){
                 for (int j=0; j<RowNames.size(); j++){
                     try {
@@ -207,18 +277,19 @@ public class lipsService {
                 indexname = "null";
             }
             if ("produce".equals(indexname)) {
-                try {
-                    for(char cloumn:cloumns){
+                for(char cloumn:cloumns){
+                    try {
                         resultlist.add(sheet.getRow(i).getCell(ChartoNum(cloumn)).getStringCellValue());
+                    }catch (NullPointerException e){
+                        resultlist.add("");
                     }
-                    hashMap.put(sheet.getRow(i).getCell(0).getStringCellValue(),resultlist);
-                }catch (NullPointerException e){
-                    e.printStackTrace();
                 }
+                hashMap.put(sheet.getRow(i).getCell(0).getStringCellValue(),resultlist);
             }
         }
         return hashMap;
     }
+
 
     /**
      *   第三个参数是设置获取字母列
@@ -232,8 +303,7 @@ public class lipsService {
     public LinkedHashMap<String,ArrayList<String>> Alllist(Sheet sheet,char index,ArrayList<Character> cloumns,int key){
         int indexNum = (int)index - 65;
         LinkedHashMap<String,ArrayList<String>> hashMap = new LinkedHashMap<>();
-
-        int rownum = ExcelTool.getAllRowNum(sheet);
+        int rownum = ExcelTool.getAllRowNum(sheet,index);
         for (int i=1; i<rownum; i++) {
             ArrayList<String> resultlist = new ArrayList<>();
             String indexname = null;
@@ -241,20 +311,29 @@ public class lipsService {
                 indexname = sheet.getRow(i).getCell(indexNum).getStringCellValue().toLowerCase();
             }catch (NullPointerException e){
                 indexname = "null";
+            }catch (IllegalStateException e1){
+                continue;
             }
             if ("produce".equals(indexname)) {
-                try {
                     for(char cloumn:cloumns){
-                        resultlist.add(sheet.getRow(i).getCell(ChartoNum(cloumn)).getStringCellValue());
+                        try {
+                            resultlist.add(sheet.getRow(i).getCell(ChartoNum(cloumn)).getStringCellValue());
+                        }catch (NullPointerException e){
+                            resultlist.add("");
+                        }
                     }
-                    hashMap.put(sheet.getRow(i).getCell(key).getStringCellValue(),resultlist);
-                }catch (NullPointerException e){
-                    e.printStackTrace();
-                }
+                hashMap.put(sheet.getRow(i).getCell(key).getStringCellValue(),resultlist);
             }
         }
         return hashMap;
     }
 
+    public ArrayList<String> getColumnsBySheet(Sheet sheet,ArrayList<Character> filter){
+        ArrayList<String> list = new ArrayList<>();
+        for (char c:filter){
+            list.add(sheet.getRow(0).getCell(ChartoNum(c)).getStringCellValue());
+        }
+        return list;
+    }
 
 }
