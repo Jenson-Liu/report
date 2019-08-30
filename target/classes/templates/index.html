@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to index page</title>
-<!--    <link rel="stylesheet" href="/static/bootstrap.min.css">-->
-<!--    <script src="/static/jquery.min.js"></script>-->
     <script src="/static/popper.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/axios/dist/axios.min.js"></script>
@@ -24,9 +22,9 @@
                     </div>
                     <div>
                         <ul class="nav navbar-nav">
-                            <li  class="active"><a href="#">查看所有系统</a></li>
-                            <li><a href="#">上传文件</a></li>
-                            <li><a href="#">系统管理</a></li>
+                            <li  class="active"><a href="/report/index">查看所有系统</a></li>
+                            <li><a href="/report/file/uploadecatt">上传文件</a></li>
+                            <li><a href="/report/system">系统管理</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,29 +32,52 @@
         </div>
     </div>
 </div>
-    <div class="container col-xs-4">
-        <p>
-            <button type="button" id="/report/Unique/welcome" onclick="openUrl(this)" class="btn btn-primary">1_Unique_eCATT</button>
-        </p>
-        <p>
-            <button type="button" id="/report/BCSet/welcome" onclick="openUrl(this)" class="btn btn-primary">2_BC_Set</button>
-        </p>
-        <p>
-            <button type="button" id="/report/Tables/welcome" onclick="openUrl(this)" class="btn btn-primary">3_E_Tables_CCF</button>
-        </p>
-        <p>
-            <button type="button" id="/report/TransportableCCF/welcome" onclick="openUrl(this)" class="btn btn-primary">5_Not_Transportable_CCF</button>
-        </p>
-        <p>
-            <button type="button" id="/report/Whitelist/welcome" onclick="openUrl(this)" class="btn btn-primary">6_Client000_Whitelist_Tables</button>
-        </p>
-        <p>
-            <button type="button" id="/report/CustObjects/welcome" onclick="openUrl(this)" class="btn btn-primary">7_CustObjects_L_T_CCF</button>
-        </p>
-        <p>
-            <button type="button" id="/report/CustomizingObjects/welcome" onclick="openUrl(this)" class="btn btn-primary">8_CustomizingObjects_with_Events_or_modified_UIs</button>
-        </p>
-    </div>
+    <div class="col-sm-12">
+        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+            <thead>
+                <tr role="row">
+                     <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">System</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+                <tr role="row" class="odd">
+                    <td class="sorting_1">
+                        <button type="button" id="/report/Unique/welcome" onclick="openUrl(this)" class="btn btn-primary">1_Unique_eCATT</button>
+                    </td>
+                </tr>
+                <tr role="row" class="odd">
+                    <td class="sorting_1">
+                        <button type="button" id="/report/BCSet/welcome" onclick="openUrl(this)" class="btn btn-primary">2_BC_Set</button>
+                    </td>
+                </tr>
+                <tr role="row" class="odd">
+                    <td class="sorting_1">
+                        <button type="button" id="/report/Tables/welcome" onclick="openUrl(this)" class="btn btn-primary">3_E_Tables_CCF</button>
+                    </td>
+                </tr>
+                <tr role="row" class="odd">
+                    <td class="sorting_1">
+                        <button type="button" id="/report/TransportableCCF/welcome" onclick="openUrl(this)" class="btn btn-primary">5_Not_Transportable_CCF</button>
+                    </td>
+                </tr>
+                <tr role="row" class="odd">
+                    <td class="sorting_1">
+                        <button type="button" id="/report/Whitelist/welcome" onclick="openUrl(this)" class="btn btn-primary">6_Client000_Whitelist_Tables</button>
+                    </td>
+                </tr>
+                <tr role="row" class="odd">
+                    <td class="sorting_1">
+                        <button type="button" id="/report/CustObjects/welcome" onclick="openUrl(this)" class="btn btn-primary">7_CustObjects_L_T_CCF</button>
+                    </td>
+                </tr><tr role="row" class="odd">
+                    <td class="sorting_1">
+                        <button type="button" id="/report/CustomizingObjects/welcome" onclick="openUrl(this)" class="btn btn-primary">8_CustomizingObjects_with_Events_or_modified_UIs</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    <div>
 <script>
     function openUrl(data) {
         window.location.href = data.id;

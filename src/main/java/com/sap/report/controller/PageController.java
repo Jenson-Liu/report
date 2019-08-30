@@ -34,6 +34,11 @@ public class PageController {
         return "index";
     }
 
+    @RequestMapping(value = "/system")
+    public String system(){
+        return "systemManage";
+    }
+
     /*
      关于新版本的修改
      */

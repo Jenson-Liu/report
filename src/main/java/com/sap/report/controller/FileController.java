@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author : Jenson.Liu
@@ -45,9 +47,28 @@ public class FileController {
         ArrayList<File> fileArrayList = Filetool.MultipartFiletoFile(files);
     }
 
+    /**
+     * 网页跳转
+     * @return
+     */
     @RequestMapping("/uploadecatt")
     public String uploadecatt(){
         return "FileUpload";
+    }
+
+    @ResponseBody
+    @RequestMapping("/systems")
+    public AjaxVO getSystems(){
+        List<String> list = redisService.getList("lipsFiles");
+        List<HashMap<String,String>> hashMaps = new ArrayList<>();
+        for (String s:list){
+            HashMap<String,String> hashMap = new HashMap<>();
+            hashMap.put("filename",s);
+            hashMap.put("sheet",redisService.getSheet(s,"sheet").toString());
+            hashMaps.add(hashMap);
+        }
+        AjaxVO ajaxVO = new AjaxVO(true, "success", hashMaps);
+        return ajaxVO;
     }
 
     @RequestMapping(value = "/send",method = RequestMethod.POST)

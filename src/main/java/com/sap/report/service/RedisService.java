@@ -7,6 +7,9 @@ package com.sap.report.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -41,6 +44,12 @@ public class RedisService {
     public Object getSheet(String key,String field){
         return stringRedisTemplate.opsForHash().get(key,field);
     }
+
+    public List<String> getList(String key){
+        List<String> list = stringRedisTemplate.opsForList().range(key,0,-1);
+        return list;
+    }
+
 
 }
 

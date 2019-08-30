@@ -12,6 +12,20 @@ import java.util.ArrayList;
 public class Filetool {
 
     /**
+     * 获取文件夹下的所有文件
+     * @param fileFolder
+     * @return
+     */
+    public static ArrayList<String> ListFiles(String fileFolder){
+        File[] files = new File(fileFolder).listFiles();
+        ArrayList<String> filesName= new ArrayList<>();
+        for (File file:files){
+            filesName.add(file.getName());
+        }
+        return filesName;
+    }
+
+    /**
      *
      * @param multipartFilelist
      * @return
